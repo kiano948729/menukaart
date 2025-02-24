@@ -18,3 +18,7 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.classList.add("active");
 }
+function openCategory(categoryName) {
+    // Hier kun je een redirect of AJAX-aanroep doen naar de juiste categoriepagina
+    console.log("Categorie geopend: " + categoryName);
+}

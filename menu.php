@@ -1,6 +1,9 @@
 <?php
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
+<?php
+include 'categories.php'; // Laad de tijdelijke data
+?>
 <!DOCTYPE html>
 <html lang="nl">
 
@@ -28,6 +31,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </div>
         <div class="menu-page">
             <main>
+                <div class="search-bar">
+                    <form action="search.php" method="GET" class="search-container">
+                        <input type="text" name="query" placeholder="Search">
+                    </form>
+                </div>
                 <div class="menu-content">
                     <div id="main" class="tabcontentWork">
                         <p>fasdflahsdfjkahdlsfjahdsf</p>
@@ -35,8 +43,27 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <div id="second" class="tabcontentWork">
                         <p>sdfsfsfgsd</p>
                     </div>
+                    <div id="third" class="tabcontentWork">
+                        <div class="menu-container">
+                            <?php foreach ($categories as $category): ?>
+                                <div class="menu-block" onclick="openCategory('<?php echo $category['name']; ?>')">
+                                    <h3><?php echo $category['name']; ?></h3>
+                                    <p><?php echo $category['item_count']; ?> items</p>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <div id="fourth" class="tabcontentWork">
+                        <p>sdfsfasdasdfasdfadsfsfgsd</p>
+                    </div>
+                    <div id="fifth" class="tabcontentWork">
+                        <p>sdfsfsfgsd</p>
+                    </div>
                 </div>
             </main>
+        </div>
+        <div class="menu-table">
+
         </div>
     </div>
 </body>
