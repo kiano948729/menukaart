@@ -327,25 +327,67 @@ input[type="text"] {
     border: none;
     color: #fff;
 }
-.menu-container {
+
+.menu-height{
     display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+.menu-main-container{
+    height: 40%;
+}
+.catogories-div{
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-    padding: 20px;
 }
-
-.menu-block {
-    background: #333;
-    color: white;
-    padding: 20px;
+.menu-container {
+    height: 60%;
+}
+.breakfast-main{
+    display: flex;
+    flex-direction: column;
     border-radius: 10px;
-    width: 200px;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.3s;
+    width: 20%;
+    height: 200px;
+    margin: 20px 20px 0px 0px;
+    background-color: rgb(85, 131, 89);
 }
-
-.menu-block:hover {
-    background: #555;
+.soups-main{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 20%;
+    height: 200px;
+    margin: 20px 20px 0px 0px;
+    background-color: rgb(115, 228, 126);
+}
+.pasta-main{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 20%;
+    height: 200px;
+    margin: 20px 20px 0px 0px;
+    background-color: rgb(125, 179, 130);
+}
+.sushi-main{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 20%;
+    height: 200px;
+    margin: 20px 20px 0px 0px;
+    background-color: rgb(189, 252, 201)
+}
+.items-catogorie-align{
+    margin: 10% 0% 0% 10%;
+}
+.items-catogorie-align i{
+    width: 60px;
+    height: 60px;
+}
+hr{
+    border: 1px solid #000;
 }

@@ -44,13 +44,55 @@ include 'categories.php'; // Laad de tijdelijke data
                         <p>sdfsfsfgsd</p>
                     </div>
                     <div id="third" class="tabcontentWork">
-                        <div class="menu-container">
-                            <?php foreach ($categories as $category): ?>
-                                <div class="menu-block" onclick="openCategory('<?php echo $category['name']; ?>')">
-                                    <h3><?php echo $category['name']; ?></h3>
-                                    <p><?php echo $category['item_count']; ?> items</p>
+                        <div class="menu-height">
+                            <div class="menu-main-container">
+                                <div class="catogories-div">
+                                    <div class="breakfast-main">
+                                        <div class="items-catogorie-align">
+                                            <i class="fa-solid fa-mug-hot"></i>
+                                            <h1>Breakfast</h1>
+                                            <?php foreach ($categories as $category): ?>
+                                                <?php if ($category['name'] === "Breakfast"): ?>
+                                                    <p><?php echo $category['item_count']; ?> items</p>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                    <div class="soups-main">
+                                        <div class="items-catogorie-align">
+
+                                        </div>
+                                    </div>
+                                    <div class="pasta-main">
+                                        <div class="items-catogorie-align">
+
+                                        </div>
+                                    </div>
+                                    <div class="sushi-main">
+                                        <div class="items-catogorie-align">
+
+                                        </div>
+                                    </div>
                                 </div>
-                            <?php endforeach; ?>
+                                <div class="catogories-div">
+                                    <div class="soups-main">
+
+                                    </div>
+                                    <div class="breakfast-main">
+
+                                    </div>
+                                    <div class="soups-main">
+
+                                    </div>
+                                    <div class="sushi-main">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="menu-container">
+                               
+                            </div>
                         </div>
                     </div>
                     <div id="fourth" class="tabcontentWork">
