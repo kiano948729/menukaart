@@ -166,7 +166,7 @@ include 'categories.php'; // Laad de tijdelijke data
                         <h2>Payement Method</h2>
                         <div class="payement-buttons">
                             <div class="payement-button">
-                                
+
                             </div>
                             <div class="payement-button">
 
@@ -175,15 +175,15 @@ include 'categories.php'; // Laad de tijdelijke data
 
                             </div>
                         </div>
-                        <div class="payement-buttons">
-                            <div>
-
+                        <div class="payement-buttons-text">
+                            <div class="payement-text">
+                                <h2>Apple pay</h2>
                             </div>
-                            <div>
-
+                            <div class="payement-text">
+                                <h2>Debit card</h2>
                             </div>
-                            <div>
-
+                            <div class="payement-text">
+                                <h2>Credit card</h2>
                             </div>
                         </div>
                     </div>
