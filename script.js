@@ -22,3 +22,12 @@ function openCategory(categoryName) {
     // Hier kun je een redirect of AJAX-aanroep doen naar de juiste categoriepagina
     console.log("Categorie geopend: " + categoryName);
 }
+function openCategory(categoryName) {
+    // Zoek de juiste div met items en toggle de display
+    const alcoholItems = document.getElementById("alcoholItems");
+    if (alcoholItems) {
+        alcoholItems.style.display = 'block'; // Laat de items zien
+    }
+
+    // Hier kun je verdere acties toevoegen, zoals AJAX-aanroepen om items dynamisch te laden
+}

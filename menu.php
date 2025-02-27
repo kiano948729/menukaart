@@ -131,16 +131,29 @@ include 'categories.php'; // Laad de tijdelijke data
                                         <div class="items-catogorie-align-boxI">
                                             <img src="img/gif/Ontwerp zonder titel (31).gif" alt="">
                                             <h1>Alcohol</h1>
-                                            <?php foreach ($categories as $category): ?>
-                                                <?php if ($category['name'] === "Alcohol"): ?>
-                                                    <p><?php echo $category['item_count']; ?> items</p>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
+                                            <button onclick="openCategory('Alcohol')">Show Items</button>
+                                            <!-- Hier worden de items van de categorie getoond -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <hr>
+                            <div class="catogories-to-items">
+                                <!-- hier moet de items van de catorgie komen -->
+                                <div id="alcoholItems" style="display: none;">
+                                    <div class="catogories-to-items-item">
+                                        <?php foreach ($categories as $category): ?>
+                                            <?php if ($category['name'] === "Alcohol"): ?>
+                                                <p><?php echo $category['item_count']; ?> items</p>
+                                                <!-- Hier kun je de specifieke items van Alcohol laten zien -->
+                                                <?php foreach ($category['items'] as $item): ?>
+                                                    <p><?php echo $item['name']; ?></p>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div id="fourth" class="tabcontentWork">
@@ -163,16 +176,16 @@ include 'categories.php'; // Laad de tijdelijke data
 
                     </div>
                     <div class="item-payment">
-                        <h2>Payement Method</h2>
+                        <h2 class="h2-item-check">Payement Method</h2>
                         <div class="payement-buttons">
                             <div class="payement-button">
-
+                                <i class="fa-brands fa-cc-apple-pay" style="color: #7e7f81;"></i>
                             </div>
                             <div class="payement-button">
-
+                                <i class="fa-solid fa-credit-card" style="color:#7e7f81;"></i>
                             </div>
                             <div class="payement-button">
-
+                                <i class="fa-solid fa-credit-card" style="color:#7e7f81;"></i>
                             </div>
                         </div>
                         <div class="payement-buttons-text">
@@ -188,7 +201,7 @@ include 'categories.php'; // Laad de tijdelijke data
                         </div>
                     </div>
                     <div class="item-button">
-
+                        <button>Place Order</button>
                     </div>
                 </div>
             </div>
