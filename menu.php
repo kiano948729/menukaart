@@ -181,9 +181,9 @@ include 'categories.php'; // Laad de tijdelijke data
                                                         </div>
                                                         <h2 class="item-name"><?php echo $item['name']; ?></h2>
                                                         <div class="item-controls">
-                                                            <button class="control-button">-</button>
-                                                            <span class="item-quantity">0</span>
-                                                            <button class="control-button">+</button>
+                                                            <button id="decrease" class="control-button">-</button>
+                                                            <span id="counter" class="item-quantity">0</span>
+                                                            <button id="increase" class="control-button">+</button>
                                                         </div>
                                                     </div>
                                                 <?php endforeach; ?>

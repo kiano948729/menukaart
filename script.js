@@ -32,4 +32,22 @@ function openCategory(categoryName) {
         }
     });
 }
+let counter = document.getElementById('counter');
+let increaseButton = document.getElementById('increase');
+let decreaseButton = document.getElementById("decrease");
+let count = 0;
 
+function functionIncrease() {
+    count ++;
+    counter.innerHTML = count+"";
+}
+function functionDecrease() {
+    count--;
+    counter.innerHTML = count+"";
+}
+function functionReset() {
+    count = 0;
+    counter.innerHTML = count+"";
+}
+increaseButton.addEventListener("click", functionIncrease);
+decreaseButton.addEventListener("click", functionDecrease);
