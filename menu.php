@@ -116,7 +116,7 @@ include 'categories.php'; // Laad de tijdelijke data
                                             <?php endforeach; ?>
                                         </div>
                                     </div>
-                                    <div class="soups-main">
+                                    <div class="soups-main" onclick="openCategory('drinks')">
                                         <div class="items-catogorie-align-boxI">
                                             <img src="img/gif/Ontwerp zonder titel (30).gif" alt="">
                                             <h1>Drinks</h1>
@@ -127,11 +127,15 @@ include 'categories.php'; // Laad de tijdelijke data
                                             <?php endforeach; ?>
                                         </div>
                                     </div>
-                                    <div class="sushi-main">
+                                    <div class="sushi-main" onclick="openCategory('alcohol')">
                                         <div class="items-catogorie-align-boxI">
                                             <img src="img/gif/Ontwerp zonder titel (31).gif" alt="">
                                             <h1>Alcohol</h1>
-                                            <button onclick="openCategory('Alcohol')">Show Items</button>
+                                            <?php foreach ($categories as $category): ?>
+                                                <?php if ($category['name'] === "Alcohol"): ?>
+                                                    <p><?php echo $category['item_count']; ?> items</p>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
                                             <!-- Hier worden de items van de categorie getoond -->
                                         </div>
                                     </div>
@@ -140,19 +144,54 @@ include 'categories.php'; // Laad de tijdelijke data
                             <hr>
                             <div class="catogories-to-items">
                                 <!-- hier moet de items van de catorgie komen -->
-                                <div id="alcoholItems" style="display: none;">
-                                    <div class="catogories-to-items-item">
+                                <div id="alcoholItems" class="item-section" style="display: none;">
+                                    <div class="items-grid">
                                         <?php foreach ($categories as $category): ?>
                                             <?php if ($category['name'] === "Alcohol"): ?>
-                                                <p><?php echo $category['item_count']; ?> items</p>
-                                                <!-- Hier kun je de specifieke items van Alcohol laten zien -->
                                                 <?php foreach ($category['items'] as $item): ?>
-                                                    <p><?php echo $item['name']; ?></p>
+                                                    <div class="item-card">
+                                                        <div class="item-header">
+                                                            <span class="item-category">Alcohol</span>
+                                                            <span
+                                                                class="item-price">€<?php echo number_format($item['price'], 2); ?></span>
+                                                        </div>
+                                                        <h2 class="item-name"><?php echo $item['name']; ?></h2>
+                                                        <div class="item-controls">
+                                                            <button class="control-button">-</button>
+                                                            <span class="item-quantity">0</span>
+                                                            <button class="control-button">+</button>
+                                                        </div>
+                                                    </div>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
+                                <!-- Einde catogorie items van Alcohol -->
+                                <div id="drinksItems" class="item-section" style="display: none;">
+                                    <div class="items-grid">
+                                        <?php foreach ($categories as $category): ?>
+                                            <?php if ($category['name'] === "Drinks"): ?>
+                                                <?php foreach ($category['items'] as $item): ?>
+                                                    <div class="item-card">
+                                                        <div class="item-header">
+                                                            <span class="item-category">Drinks</span>
+                                                            <span
+                                                                class="item-price">€<?php echo number_format($item['price'], 2); ?></span>
+                                                        </div>
+                                                        <h2 class="item-name"><?php echo $item['name']; ?></h2>
+                                                        <div class="item-controls">
+                                                            <button class="control-button">-</button>
+                                                            <span class="item-quantity">0</span>
+                                                            <button class="control-button">+</button>
+                                                        </div>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                                <!-- Einde catogorie items van Drinks -->
                             </div>
                         </div>
                     </div>

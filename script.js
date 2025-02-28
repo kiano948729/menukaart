@@ -19,15 +19,17 @@ function openTab(evt, tabName) {
     evt.currentTarget.classList.add("active");
 }
 function openCategory(categoryName) {
-    // Hier kun je een redirect of AJAX-aanroep doen naar de juiste categoriepagina
-    console.log("Categorie geopend: " + categoryName);
-}
-function openCategory(categoryName) {
-    // Zoek de juiste div met items en toggle de display
-    const alcoholItems = document.getElementById("alcoholItems");
-    if (alcoholItems) {
-        alcoholItems.style.display = 'block'; // Laat de items zien
-    }
+    // Selecteer alle secties met items
+    const itemSections = document.querySelectorAll(".item-section");
 
-    // Hier kun je verdere acties toevoegen, zoals AJAX-aanroepen om items dynamisch te laden
+    // Loop door alle secties en sluit ze, behalve als ze overeenkomen met de categorie
+    itemSections.forEach(section => {
+        if (section.id === categoryName + "Items") {
+            // Toggle de zichtbaarheid als er opnieuw op wordt geklikt
+            section.style.display = section.style.display === 'block' ? 'none' : 'block';
+        } else {
+            section.style.display = 'none'; // Sluit alle andere secties
+        }
+    });
 }
+

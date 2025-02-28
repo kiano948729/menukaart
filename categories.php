@@ -1,4 +1,3 @@
-
 <?php
 $categories = [
     [
@@ -78,8 +77,18 @@ $categories = [
         "items" => [
             ["name" => "Red Wine", "price" => 6.50],
             ["name" => "Beer", "price" => 4.00],
-            ["name" => "Whiskey", "price" => 8.75]
+            ["name" => "Whiskey", "price" => 8.75],
+            ["name" => "Speed cola", "price" => 3000],
+            ["name" => "Juggernaut", "price" => 2500]
         ]
     ]
 ];
+//Dynamisch item_count bijwerken voor alle categorieën
+foreach ($categories as &$category) {
+    $category['item_count'] = count($category['items']);
+}
+unset($category); //Verbreek referentie om bugs te voorkomen
+
+//Debug output om te controleren of het werkt
+// print_r($categories);
 ?>

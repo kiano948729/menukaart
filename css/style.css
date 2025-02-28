@@ -1,14 +1,15 @@
-.body-background{
+.body-background {
     background-color: rgb(29, 27, 27);
     border-radius: 45px;
     margin: 10px;
     height: 900px;
 }
+
 .nav-links {
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    border-radius: 20px;  
+    border-radius: 20px;
 }
 
 .nav-links a {
@@ -22,7 +23,8 @@
 }
 
 .nav-links a img {
-    width: 20px; /* Pas dit aan afhankelijk van het logo */
+    width: 20px;
+    /* Pas dit aan afhankelijk van het logo */
     height: auto;
     margin-right: 10px;
 }
@@ -30,7 +32,8 @@
 .nav-links a:first-child {
     display: flex;
     align-items: center;
-    background-color: #353535; /* Donkerder grijze achtergrond */
+    background-color: #353535;
+    /* Donkerder grijze achtergrond */
     padding: 10px 15px;
     border-radius: 20px;
     width: 600px;
@@ -40,6 +43,7 @@
     background-color: #fff;
     width: 75px;
 }
+
 .nav-links a:nth-child(3) {
     background-color: #fff;
     width: 75px;
@@ -61,37 +65,44 @@
     background-color: #222;
     color: white;
 }
-.main-div{
+
+.main-div {
     display: flex;
     width: 100%;
 }
-.main-first-div{
+
+.main-first-div {
     width: 60%;
     color: #fff;
     font-size: 40px;
     margin: 40px 0px 0px 20px;
 }
-.main-first-div h1{
+
+.main-first-div h1 {
     margin: 0%;
     padding: 0%;
     display: flex;
     align-items: center;
 }
-.main-first-div h1 img{
+
+.main-first-div h1 img {
     width: 130px;
     height: 70px;
     margin: 0px 20px 0px 20px;
 }
-.main-second-div{
+
+.main-second-div {
     width: 40%;
     margin: 70px 20px 0px 0px;
 
 }
-.second-round-div{
+
+.second-round-div {
     display: flex;
     width: 100%;
 }
-.round-div{
+
+.round-div {
     width: 7%;
     border-radius: 100% 100% 0 0;
     background-color: #fff;
@@ -99,19 +110,22 @@
     justify-content: center;
     align-items: center;
 }
-.round-div div{
+
+.round-div div {
     background-color: black;
     width: 40px;
     height: 40px;
     border-radius: 50%;
 }
-.round-not-div{
+
+.round-not-div {
     width: 80%;
     background-color: #fff;
     border-radius: 25px 25px 35px 0 / 35px 35px 35px 0;
     padding: 10px;
 }
-.round-not-div p{
+
+.round-not-div p {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,27 +133,32 @@
     margin: 0%;
     padding: 0%;
 }
-.second-round-down-div{
+
+.second-round-down-div {
     display: flex;
     width: 89.9%;
     border: 1px solid #fff;
     border-radius: 0px 30px 30px 30px;
 
 }
-.down-div{
+
+.down-div {
     width: 50%;
     background-color: #fff;
     border-radius: 0px 30px 30px 30px;
 }
-.down-div img{
+
+.down-div img {
     width: 100%;
     height: 70px;
 }
-.down-second-div{
+
+.down-second-div {
     width: 40%;
     border-radius: 30px 50px 50px 0;
 }
-.down-second-div h1{
+
+.down-second-div h1 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -149,12 +168,14 @@
     font-size: 40px;
     margin-top: 10px;
 }
-.second-button-bar{
+
+.second-button-bar {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     margin: 30px 60px 0px 0px
 }
+
 .second-button-bar a {
     color: #fff;
     text-decoration: none;
@@ -164,11 +185,13 @@
     border-radius: 30px;
     margin: 0px 4px 0px 0px;
 }
-.second-button-bar a:hover{
+
+.second-button-bar a:hover {
     background-color: #565353;
     border: none;
 }
-.lower-main{
+
+.lower-main {
     display: flex;
     flex-direction: row;
     margin-top: 30px;
@@ -176,114 +199,137 @@
     gap: 10px;
 
 }
-.lower-main-div{
+
+.lower-main-div {
     width: 340px;
     height: 450px;
     border-radius: 40px;
     background-image: url(../img/imagecopy2.png);
 }
-.lower-main-div img{
+
+.lower-main-div img {
     width: 340px;
     height: 450px;
     border-radius: 40px;
 }
-.lower-main-div-second{
+
+.lower-main-div-second {
     width: 340px;
     height: 450px;
     border-radius: 40px;
     background-image: url(../img/imagecopy5.png);
 }
-.lower-main-div-second img{
+
+.lower-main-div-second img {
     width: 340px;
     height: 450px;
     border-radius: 40px;
 }
-.lower-main-div-third{
+
+.lower-main-div-third {
     width: 340px;
     height: 450px;
     border-radius: 40px;
     background-image: url(../img/imagecopy3.png);
 }
-.lower-main-div-third img{
+
+.lower-main-div-third img {
     width: 340px;
     height: 450px;
     border-radius: 40px;
 }
-.lower-main-div-fourth{
+
+.lower-main-div-fourth {
     width: 340px;
-    height: 450px; 
-    border-radius: 40px;  
+    height: 450px;
+    border-radius: 40px;
     background-image: url(../img/imagecopy4.png);
 }
-.lower-main-div-fourth img{
+
+.lower-main-div-fourth img {
     width: 340px;
     height: 450px;
     border-radius: 40px;
 }
-.lower-main-div-fifth{
+
+.lower-main-div-fifth {
     background-image: url(../img/imagecopy6.png);
     width: 340px;
     height: 450px;
     border-radius: 40px;
 }
-.lower-main-div-fifth img{
+
+.lower-main-div-fifth img {
     width: 340px;
     height: 450px;
     border-radius: 40px;
 }
-.together-span{
+
+.together-span {
     color: #85d7a5;
 }
-.more-span{
+
+.more-span {
     color: #85d7a5;
     margin: 0px 0px 0px 15px;
 }
-.sus-span{
+
+.sus-span {
     background-color: #85d7a5;
-    color:#194b2c;
+    color: #194b2c;
     border-radius: 30px;
     padding: 0px 15px;
     margin: 0px 10px 0px 0px;
 }
+
 .tabcontentWork {
     display: none;
 }
-.menu-main-div{
+
+.menu-main-div {
     display: flex;
     width: 100%;
 }
+
 .work-nav-links {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Zet de hele navigatie in het midden */
+    align-items: center;
+    /* Zet de hele navigatie in het midden */
 }
 
 .menu-align {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Houdt de tekst links */
+    align-items: flex-start;
+    /* Houdt de tekst links */
 }
-.work-nav-links h1{
+
+.work-nav-links h1 {
     color: #fff;
     display: flex;
     justify-content: center;
     font-size: 30px;
 }
-.work-nav-links h1 img{
+
+.work-nav-links h1 img {
     width: 75px;
     height: 75px;
 }
-.menu-nav{
+
+.menu-nav {
     width: 15%;
     background: rgb(17, 19, 21);
-    border-radius: 30px 0px 0px 30px!important;
+    border-radius: 30px 0px 0px 30px !important;
 }
-.menu-page{
+
+.menu-page {
     width: 65%;
     height: 900px;
     background: rgb(17, 19, 21);
 }
-.menu-table{
+
+.menu-table {
     width: 25%;
     display: flex;
     flex-direction: column;
@@ -291,74 +337,86 @@
     background: rgb(17, 19, 21);
     border-radius: 0 30px 30px 0px;
 }
-.menu-table-title{
+
+.menu-table-title {
     height: 15%;
     color: #fff;
 }
-.menu-table-checkout{
+
+.menu-table-checkout {
     height: 793px;
     background: rgb(17, 19, 21);
     border-radius: 0px 0px 30px 0px;
 }
-.menu-checkout{
+
+.menu-checkout {
     background-color: rgb(41, 43, 45);
     height: 730px;
     border-radius: 15px;
     width: 400px;
     margin: 10px 0px 0px 0px;
-}     
-.item-check{
+}
+
+.item-check {
     height: 70%;
 }
-.item-payment{
+
+.item-payment {
     height: 20%;
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
-.payement-buttons{
+
+.payement-buttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 10px;
 }
-.payement-buttons-text{
+
+.payement-buttons-text {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 45px;
     margin: 10px 0px 0px 0px;
 }
-.payement-button{
+
+.payement-button {
     border: rgb(63, 66, 67) 1px solid;
     border-radius: 10px;
     width: 100px;
     height: 60px;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
 }
-.payement-text h2{
+
+.payement-text h2 {
     font-size: 15px;
     color: rgb(107, 111, 112);
     margin: 0%;
 }
-.payement-text{
+
+.payement-text {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 10px;
 }
-.item-button{
+
+.item-button {
     height: 10%;
     text-align: center;
 }
 
-h2{
+h2 {
     margin: 0%;
     color: rgb(63, 66, 67);
 }
-.menu-link{
+
+.menu-link {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -377,18 +435,22 @@ h2{
     margin: 20px 50px 0px 0px;
 }
 
-.menuLinks:hover, .menuLinks.active {
+.menuLinks:hover,
+.menuLinks.active {
     background-color: #444;
 }
-.search-bar{
+
+.search-bar {
     height: 100px;
     display: flex;
     align-items: center;
 }
+
 .search-container {
     display: flex;
     gap: 10px;
 }
+
 input[type="text"] {
     padding: 10px;
     font-size: 16px;
@@ -398,24 +460,28 @@ input[type="text"] {
     color: #fff;
 }
 
-.menu-height{
+.menu-height {
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 100%;
 }
-.menu-main-container{
+
+.menu-main-container {
     height: 40%;
 }
-.catogories-div{
+
+.catogories-div {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
+
 .menu-container {
     height: 60%;
 }
-.breakfast-main{
+
+.breakfast-main {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -424,7 +490,8 @@ input[type="text"] {
     margin: 20px 20px 0px 0px;
     background-color: rgb(85, 131, 89);
 }
-.soups-main{
+
+.soups-main {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -433,7 +500,8 @@ input[type="text"] {
     margin: 20px 20px 0px 0px;
     background-color: rgb(115, 228, 126);
 }
-.pasta-main{
+
+.pasta-main {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -442,7 +510,8 @@ input[type="text"] {
     margin: 20px 20px 0px 0px;
     background-color: rgb(125, 179, 130);
 }
-.sushi-main{
+
+.sushi-main {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -451,38 +520,103 @@ input[type="text"] {
     margin: 20px 20px 0px 0px;
     background-color: rgb(189, 252, 201)
 }
-.items-catogorie-align{
+
+.items-catogorie-align {
     margin: 10% 0% 0% 10%;
 }
-.items-catogorie-align-boxI{
+
+.items-catogorie-align-boxI {
     margin: 10% 0% 0% 10%;
 }
-.items-catogorie-align-boxI img{
+
+.items-catogorie-align-boxI img {
     border-radius: 10px;
     width: 60px;
     height: 60px;
 }
-.items-catogorie-align img{
+
+.items-catogorie-align img {
     width: 60px;
     height: 80px;
 }
-hr{
+
+hr {
     border: 1px solid #000;
 }
-.h2-item-check{
+
+.h2-item-check {
     margin-left: 9%;
     margin-bottom: 5%;
     color: rgb(107, 111, 112);
 }
+
 .payement-button i {
     font-size: xx-large;
 }
-.item-button button{
-    background-color: rgb(107, 111, 112);   
+
+.item-button button {
+    background-color: rgb(107, 111, 112);
     color: #fff;
     padding: 15px 120px;
     border-radius: 20px;
 }
 
+/* Grid layout voor items */
+/* Container voor de items */
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Maximaal 4 kolommen naast elkaar */
+    padding: 16px;
+}
 
+/* Stijl voor elk item-blokje */
+.item-card {
+    background-color: #333;
+    color: white;
+    padding: 14px;
+    border-radius: 10px;
+    width: 70%;
+    height: 186px;
+    margin: 20px 20px 0px 0px;
 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Stijl voor de item-header */
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.item-name {
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+.item-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-button {
+    background-color: #555;
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.control-button:hover {
+    background-color: #777;
+}
