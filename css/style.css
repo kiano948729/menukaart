@@ -563,59 +563,72 @@ hr {
 
 /* Grid layout voor items */
 /* Container voor de items */
+/* Container voor een Grid-layout met maximaal 4 kolommen */
 .items-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    /* Maximaal 4 kolommen naast elkaar */
-    gap: 0%;
-    margin: 0%;
+    grid-template-columns: repeat(4, 1fr); /* Maximaal 4 kolommen */
+    gap: 20px; /* Ruimte tussen items */
+    padding: 20px; /* Interne ruimte rond de grid-container */
+    margin-left: 20px;
 }
 
-/* Stijl voor elk item-blokje */
-.item-card {
-    background-color: #333;
-    color: white;
-    padding: 14px;
-    border-radius: 10px;
-    width: 70%;
-    height: 186px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-}
-
-.item-card:hover {
-    transform: translateY(-5px);
-}
-
-/* Stijl voor de item-header */
-.item-header {
+/* Styling voor elk individueel item */
+.item {
+    background-color: #fff; /* Witte achtergrond voor een nette uitstraling */
+    border: 1px solid #ddd; /* Subtiele rand */
+    border-radius: 10px; /* Ronde hoeken net zoals categorieën */
+    padding: 20px; /* Binnenruimte binnen elk blok */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Voeg schaduw toe zoals bij categorieën */
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: #aaa;
+    flex-direction: column; /* Verticaal uitlijnen */
+    justify-content: space-between; /* Ruimte tussen inhoud en knoppen */
+    align-items: center; /* Horizontaal centreren */
+    height: 160px; /* Zorg voor consistente hoogte */
+    width: 195px;
 }
 
-.item-name {
-    font-size: 18px;
-    margin: 8px 0;
+/* Details van elk product */
+.item-details {
+    text-align: center; /* Zorg dat de tekst in het midden staat */
 }
 
+.item-details p {
+    margin: 5px 0; /* Marges tussen paragrafen */
+    font-size: 14px; /* Pas lettergrootte aan voor consistentie */
+    color: #333; /* Donkergrijze tekst */
+}
+
+/* Controls voor knoppen en hoeveelheid */
 .item-controls {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 15px; /* Afstand tussen knoppen en de hoeveelheid */
 }
 
-.control-button {
-    background-color: #555;
-    border: none;
+/* Knoppen (plus en min) */
+.item-controls button {
+    width: 40px; /* Maak knoppen consistent groter */
+    height: 40px;
+    background-color: #0078d7; /* Blauw zoals eerder */
     color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px; /* Vergroot tekst in knop */
+    cursor: pointer; /* Hand-cursor voor interactie */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease; /* Smooth hover-effect */
 }
 
-.control-button:hover {
-    background-color: #777;
+.item-controls button:hover {
+    background-color: #005bb5; /* Donkerdere kleur bij hover */
+}
+
+/* Hoeveelheid (tussen de knoppen) */
+.item-controls .item-quantity {
+    font-size: 16px;
+    text-align: center;
+    width: 40px; /* Zorg voor consistente breedte */
 }

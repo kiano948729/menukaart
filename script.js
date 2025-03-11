@@ -32,22 +32,46 @@ function openCategory(categoryName) {
         }
     });
 }
-let counter = document.getElementById('counter');
-let increaseButton = document.getElementById('increase');
-let decreaseButton = document.getElementById("decrease");
-let count = 0;
+document.addEventListener("DOMContentLoaded", function () {
+    // Selecteer alle increase en decrease knoppen
+    const increaseButtons = document.querySelectorAll(".increase-btn");
+    const decreaseButtons = document.querySelectorAll(".decrease-btn");
 
-function functionIncrease() {
-    count ++;
-    counter.innerHTML = count+"";
-}
-function functionDecrease() {
-    count--;
-    counter.innerHTML = count+"";
-}
-function functionReset() {
-    count = 0;
-    counter.innerHTML = count+"";
-}
-increaseButton.addEventListener("click", functionIncrease);
-decreaseButton.addEventListener("click", functionDecrease);
+    // Eventlisteners voor verhogen/verlagen
+    increaseButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const itemName = button.dataset.name;
+            const quantityElement = document.querySelector(`.item-quantity[data-name="${itemName}"]`);
+            const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
+
+            let quantity = parseInt(quantityElement.textContent, 10);
+            let stock = parseInt(stockElement.textContent, 10);
+
+            if (stock > 0) {
+                quantity++;
+                stock--;
+                quantityElement.textContent = quantity;
+                stockElement.textContent = stock;
+            }
+        });
+    });
+
+    decreaseButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const itemName = button.dataset.name;
+            const quantityElement = document.querySelector(`.item-quantity[data-name="${itemName}"]`);
+            const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
+
+            let quantity = parseInt(quantityElement.textContent, 10);
+            let stock = parseInt(stockElement.textContent, 10);
+
+            if (quantity > 0) {
+                quantity--;
+                stock++;
+                quantityElement.textContent = quantity;
+                stockElement.textContent = stock;
+            }
+        });
+    });
+});
+
