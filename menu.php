@@ -2,11 +2,10 @@
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <?php
-/**
- * @var array $categories
- */
 include 'categories.php';
-// Laad de tijdelijke data
+?>
+<?php
+    include 'backend/databaseConnect.php';
 ?>
 
 <!DOCTYPE html>
@@ -56,11 +55,16 @@ include 'categories.php';
                                     <div class="items-catogorie-align-boxI">
                                         <i class="fa-solid fa-mug-hot" style="font-size: 40px;"></i>
                                         <h1>Breakfast</h1>
-                                        <?php foreach ($categories as $category): ?>
+                                        <?php
+                                        if (isset($categories) && is_array($categories)) :
+                                            foreach ($categories as $category): ?>
                                             <?php if ($category['name'] === "Breakfast"): ?>
                                                 <p><?php echo $category['item_count']; ?> items</p>
                                             <?php endif; ?>
-                                        <?php endforeach; ?>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <p>No categories available.</p>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="soups-main" onclick="openCategory('soups')">
@@ -101,9 +105,9 @@ include 'categories.php';
                                 <div class="soups-main" onclick="openCategory('main course')">
                                     <div class="items-catogorie-align-boxI">
                                         <img src="img/gif/Ontwerp zonder titel (28).gif" alt="">
-                                        <h1>Maincourse</h1>
+                                        <h1>Main course</h1>
                                         <?php foreach ($categories as $category): ?>
-                                            <?php if ($category['name'] === "Main course"): ?>
+                                            <?php if ($category['name'] === "Main Course"): ?>
                                                 <p><?php echo $category['item_count']; ?> items</p>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
@@ -273,7 +277,7 @@ include 'categories.php';
                             <div id="main courseItems" class="item-section" style="display: none;">
                                 <div class="items-grid">
                                     <?php foreach ($categories as $category): ?>
-                                        <?php if ($category['name'] === "Main course"): ?>
+                                        <?php if ($category['name'] === "Main Course"): ?>
                                             <div class="category-section" id="alcoholItems">
                                                 <h2><?php echo $category['name']; ?></h2>
                                                 <!-- Grid container voor producten -->
