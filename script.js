@@ -75,12 +75,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 document.addEventListener("DOMContentLoaded", function () {
-    const cartItemsList = document.getElementById("cart-items"); // De UL waar de items komen
+    const cartItemsList = document.getElementById("cart-items"); // Winkelwagen UL
     const increaseButtons = document.querySelectorAll(".increase-btn");
+    const decreaseButtons = document.querySelectorAll(".decrease-btn");
 
     // Winkelwagen object
     const cart = {};
 
+    // Plus-knop Functionaliteit
     increaseButtons.forEach(button => {
         button.addEventListener("click", function () {
             const itemName = button.dataset.name;
@@ -106,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     };
                 }
 
-                // Update de winkelwagen in de DOM
+                // Update de Winkelwagen in de DOM
                 updateCartDOM();
             } else {
                 alert("Niet genoeg voorraad beschikbaar!");
@@ -114,30 +116,77 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    function updateCartDOM() {
-        // Maak winkelwagen leeg (leeg de UL)
-        cartItemsList.innerHTML = "";
+    // Min-knop Functionaliteit
+    decreaseButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const itemName = button.dataset.name;
+            const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
 
-        // Voeg elk item uit de winkelwagen toe aan de HTML
+            if (cart[itemName] && cart[itemName].quantity > 0) {
+                // Verminder hoeveelheid
+                cart[itemName].quantity--;
+
+                // Verhoog voorraad
+                let stock = parseInt(stockElement.textContent, 10);
+                stock++;
+                stockElement.textContent = stock;
+
+                // Verwijder item uit winkelwagen als hoeveelheid 0 is
+                if (cart[itemName].quantity === 0) {
+                    delete cart[itemName];
+                }
+
+                // Update DOM winkelwagen
+                updateCartDOM();
+            } else {
+                alert("Geen items meer in het winkelwagentje om te verwijderen.");
+            }
+        });
+    });
+
+    // Winkelwagen DOM Bijwerken
+    function updateCartDOM() {
+        cartItemsList.innerHTML = ""; // Leeg de UL
+
         for (const itemName in cart) {
             const cartItem = cart[itemName];
+
+            // Winkelwagen item + Delete-knop
             const li = document.createElement("li");
-            li.textContent = `${cartItem.name} - Aantal: ${cartItem.quantity} - Prijs: €${(cartItem.price * cartItem.quantity).toFixed(2)}`;
+            li.innerHTML = `
+                ${cartItem.name} - Aantal: ${cartItem.quantity} - Prijs: €${(cartItem.price * cartItem.quantity).toFixed(2)}
+                <button class="delete-btn" data-name="${cartItem.name}">Verwijder</button>
+            `;
+
             cartItemsList.appendChild(li);
         }
+
+        // Voeg eventlistener toe aan nieuwe verwijderknoppen
+        addDeleteEventListeners();
+    }
+
+    // Delete-knoppen Functionaliteit
+    function addDeleteEventListeners() {
+        const deleteButtons = document.querySelectorAll(".delete-btn");
+
+        deleteButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                const itemName = button.dataset.name;
+                const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
+
+                if (cart[itemName]) {
+                    // Verhoog voorraad
+                    let stock = parseInt(stockElement.textContent, 10);
+                    stock += cart[itemName].quantity;
+                    stockElement.textContent = stock;
+
+                    // Verwijder item volledig uit winkelwagen
+                    delete cart[itemName];
+
+                    // Update DOM winkelwagen
+                    updateCartDOM();
+                }
+            });
+        });
     }
 });
-fetch('updateStock.php', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ name: itemName }),
-})
-    .then(response => response.json())
-    .then(data => {
-        if (!data.success) {
-            alert(data.message);
-        }
-    })
-    .catch(error => console.error("Error: update stock not found", error));
