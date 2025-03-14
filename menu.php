@@ -56,7 +56,7 @@ include 'categories.php';
                                         <i class="fa-solid fa-mug-hot" style="font-size: 40px;"></i>
                                         <h1>Breakfast</h1>
                                         <?php
-                                        if (isset($categories) && is_array($categories)) :
+                                        if (isset($categories) && is_array($categories)):
                                             foreach ($categories as $category): ?>
                                             <?php if ($category['name'] === "Breakfast"): ?>
                                                 <p><?php echo $category['item_count']; ?> items</p>
@@ -407,6 +407,7 @@ include 'categories.php';
             </div>
         </main>
     </div>
+
     <div class="menu-table">
         <div class="menu-table-title">
             <h1>Table</h1><!-- hier moet nog een id komen voor de user die een table krijgt toegewezen -->
