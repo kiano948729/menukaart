@@ -74,4 +74,70 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const cartItemsList = document.getElementById("cart-items"); // De UL waar de items komen
+    const increaseButtons = document.querySelectorAll(".increase-btn");
 
+    // Winkelwagen object
+    const cart = {};
+
+    increaseButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const itemName = button.dataset.name;
+            const itemPrice = button.dataset.price;
+            const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
+
+            let stock = parseInt(stockElement.textContent, 10);
+
+            // Controleer of er voorraad is
+            if (stock > 0) {
+                // Update voorraad
+                stock--;
+                stockElement.textContent = stock;
+
+                // Voeg item toe aan winkelwagen of verhoog hoeveelheid
+                if (cart[itemName]) {
+                    cart[itemName].quantity++;
+                } else {
+                    cart[itemName] = {
+                        name: itemName,
+                        price: parseFloat(itemPrice),
+                        quantity: 1
+                    };
+                }
+
+                // Update de winkelwagen in de DOM
+                updateCartDOM();
+            } else {
+                alert("Niet genoeg voorraad beschikbaar!");
+            }
+        });
+    });
+
+    function updateCartDOM() {
+        // Maak winkelwagen leeg (leeg de UL)
+        cartItemsList.innerHTML = "";
+
+        // Voeg elk item uit de winkelwagen toe aan de HTML
+        for (const itemName in cart) {
+            const cartItem = cart[itemName];
+            const li = document.createElement("li");
+            li.textContent = `${cartItem.name} - Aantal: ${cartItem.quantity} - Prijs: €${(cartItem.price * cartItem.quantity).toFixed(2)}`;
+            cartItemsList.appendChild(li);
+        }
+    }
+});
+fetch('updateStock.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ name: itemName }),
+})
+    .then(response => response.json())
+    .then(data => {
+        if (!data.success) {
+            alert(data.message);
+        }
+    })
+    .catch(error => console.error("Error: update stock not found", error));

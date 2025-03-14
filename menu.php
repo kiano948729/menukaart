@@ -416,7 +416,10 @@ include 'categories.php';
         <div class="menu-table-checkout">
             <div class="menu-checkout">
                 <div class="item-check">
-
+                    <div id="cart" class="cart-container">
+                        <h2>Item-check</h2>
+                        <ul id="cart-items"></ul>
+                    </div>
                 </div>
                 <div class="item-payment">
                     <h2 class="h2-item-check">Payement Method</h2>
