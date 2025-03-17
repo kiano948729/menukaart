@@ -18,6 +18,7 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.classList.add("active");
 }
+
 function openCategory(categoryName) {
     // Selecteer alle secties met items
     const itemSections = document.querySelectorAll(".item-section");
@@ -32,48 +33,7 @@ function openCategory(categoryName) {
         }
     });
 }
-document.addEventListener("DOMContentLoaded", function () {
-    // Selecteer alle increase en decrease knoppen
-    const increaseButtons = document.querySelectorAll(".increase-btn");
-    const decreaseButtons = document.querySelectorAll(".decrease-btn");
 
-    // Eventlisteners voor verhogen/verlagen
-    increaseButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            const itemName = button.dataset.name;
-            const quantityElement = document.querySelector(`.item-quantity[data-name="${itemName}"]`);
-            const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
-
-            let quantity = parseInt(quantityElement.textContent, 10);
-            let stock = parseInt(stockElement.textContent, 10);
-
-            if (stock > 0) {
-                quantity++;
-                stock--;
-                quantityElement.textContent = quantity;
-                stockElement.textContent = stock;
-            }
-        });
-    });
-
-    decreaseButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            const itemName = button.dataset.name;
-            const quantityElement = document.querySelector(`.item-quantity[data-name="${itemName}"]`);
-            const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
-
-            let quantity = parseInt(quantityElement.textContent, 10);
-            let stock = parseInt(stockElement.textContent, 10);
-
-            if (quantity > 0) {
-                quantity--;
-                stock++;
-                quantityElement.textContent = quantity;
-                stockElement.textContent = stock;
-            }
-        });
-    });
-});
 document.addEventListener("DOMContentLoaded", function () {
     const cartItemsList = document.getElementById("cart-items"); // Winkelwagen UL
     const increaseButtons = document.querySelectorAll(".increase-btn");
@@ -86,29 +46,35 @@ document.addEventListener("DOMContentLoaded", function () {
     increaseButtons.forEach(button => {
         button.addEventListener("click", function () {
             const itemName = button.dataset.name;
-            const itemPrice = button.dataset.price;
+            const itemPrice = parseFloat(button.dataset.price); // Zorg ervoor dat je een numerieke prijs hebt
+            const quantityElement = document.querySelector(`.item-quantity[data-name="${itemName}"]`);
             const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
 
+            let quantity = parseInt(quantityElement.textContent, 10);
             let stock = parseInt(stockElement.textContent, 10);
 
             // Controleer of er voorraad is
             if (stock > 0) {
-                // Update voorraad
+                // Update voorraad en hoeveelheid
+                quantity++;
                 stock--;
+                quantityElement.textContent = quantity;
                 stockElement.textContent = stock;
 
-                // Voeg item toe aan winkelwagen of verhoog hoeveelheid
+                // Voeg product toe aan winkelwagen of update hoeveelheid
                 if (cart[itemName]) {
                     cart[itemName].quantity++;
+                    cart[itemName].totalPrice += itemPrice; // Total prijs bijwerken
                 } else {
                     cart[itemName] = {
                         name: itemName,
-                        price: parseFloat(itemPrice),
-                        quantity: 1
+                        price: itemPrice,
+                        quantity: 1,
+                        totalPrice: itemPrice // Bij een enkel item is de prijs gelijk aan de totale prijs
                     };
                 }
 
-                // Update de Winkelwagen in de DOM
+                // Update winkelwagen DOM
                 updateCartDOM();
             } else {
                 alert("Niet genoeg voorraad beschikbaar!");
@@ -117,26 +83,36 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Min-knop Functionaliteit
+    // Min-knop Functionaliteit
     decreaseButtons.forEach(button => {
         button.addEventListener("click", function () {
             const itemName = button.dataset.name;
+            const quantityElement = document.querySelector(`.item-quantity[data-name="${itemName}"]`);
             const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
 
+            // Haal huidige voorraad en hoeveelheid uit DOM
+            let quantity = parseInt(quantityElement.textContent, 10);
+            let stock = parseInt(stockElement.textContent, 10);
+
+            // Controleer of er daadwerkelijk een item in de winkelwagen zit
             if (cart[itemName] && cart[itemName].quantity > 0) {
-                // Verminder hoeveelheid
+                // Verminder hoeveelheid en verhoog voorraad
+                quantity--;
+                stock++;
+
+                // Werk de hoeveelheden bij in het winkelwagen object
                 cart[itemName].quantity--;
 
-                // Verhoog voorraad
-                let stock = parseInt(stockElement.textContent, 10);
-                stock++;
-                stockElement.textContent = stock;
-
-                // Verwijder item uit winkelwagen als hoeveelheid 0 is
+                // Verwijder het item als de hoeveelheid 0 is
                 if (cart[itemName].quantity === 0) {
                     delete cart[itemName];
                 }
 
-                // Update DOM winkelwagen
+                // Update DOM elementen
+                quantityElement.textContent = quantity; // Update visuele hoeveelheid
+                stockElement.textContent = stock; // Update visuele voorraad
+
+                // Update winkelwagen in de DOM
                 updateCartDOM();
             } else {
                 alert("Geen items meer in het winkelwagentje om te verwijderen.");
@@ -154,8 +130,9 @@ document.addEventListener("DOMContentLoaded", function () {
             // Winkelwagen item + Delete-knop
             const li = document.createElement("li");
             li.innerHTML = `
-                ${cartItem.name} - Aantal: ${cartItem.quantity} - Prijs: €${(cartItem.price * cartItem.quantity).toFixed(2)}
+            ${cartItem.name} - Aantal: ${cartItem.quantity} - Prijs: €${cartItem.totalPrice.toFixed(2)}
                 <button class="delete-btn" data-name="${cartItem.name}">Verwijder</button>
+
             `;
 
             cartItemsList.appendChild(li);
@@ -173,16 +150,20 @@ document.addEventListener("DOMContentLoaded", function () {
             button.addEventListener("click", function () {
                 const itemName = button.dataset.name;
                 const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
+                const quantityElement = document.querySelector(`.item-quantity[data-name="${itemName}"]`);
 
                 if (cart[itemName]) {
                     // Verhoog voorraad
+                    let quantity = parseInt(quantityElement.textContent, 10);
                     let stock = parseInt(stockElement.textContent, 10);
                     stock += cart[itemName].quantity;
+                    stockElement.textContent = stock;
+                    quantity = 0;
+                    quantityElement.textContent = quantity;
                     stockElement.textContent = stock;
 
                     // Verwijder item volledig uit winkelwagen
                     delete cart[itemName];
-
                     // Update DOM winkelwagen
                     updateCartDOM();
                 }

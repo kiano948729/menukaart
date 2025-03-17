@@ -1,5 +1,6 @@
 <?php
 include 'backend/databaseConnect.php';
+global $conn;
 
 $data = json_decode(file_get_contents("php://input"), true);
 
@@ -7,8 +8,8 @@ if (isset($data['name'])) {
     $itemName = $data['name'];
 
     try {
-        // Haal huidige voorraad op
-        $stmt = $conn->prepare("SELECT stock FROM items WHERE name = :name");
+        // Haal voorraad en prijs op
+        $stmt = $conn->prepare("SELECT stock, price FROM items WHERE name = :name");
         $stmt->bindParam(':name', $itemName);
         $stmt->execute();
 
@@ -22,14 +23,17 @@ if (isset($data['name'])) {
             $updateStmt->bindParam(':name', $itemName);
             $updateStmt->execute();
 
-            echo json_encode(['success' => true, 'message' => 'Voorraad bijgewerkt']);
+            echo json_encode([
+                'success' => true,
+                'message' => 'Voorraad bijgewerkt',
+                'price' => $item['price'], // Prijs wordt meegegeven
+                'stock' => $newStock
+            ]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Onvoldoende voorraad']);
         }
     } catch (Exception $e) {
         echo json_encode(['success' => false, 'message' => $e->getMessage()]);
     }
-} else {
-    echo json_encode(['success' => false, 'message' => 'Geen gegevens verzonden']);
 }
 ?>

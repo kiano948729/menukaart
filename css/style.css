@@ -632,8 +632,72 @@ hr {
     font-size: 16px;
     text-align: center;
     width: 40px; /* Zorg voor consistente breedte */
+    color: #fff;
 }
 .catogories-to-items{
     height: auto;
     background-color: rgb(17, 19, 21);
+}
+#cart-items {
+    max-width: 400px; /* Stel een maximale breedte in */
+    margin: 20px auto; /* Horizontaal centreren */
+    padding: 15px;
+    border-radius: 8px; /* Maak de hoeken afgerond */
+    background: rgb(77, 77, 77, 100); /* Lichtgrijze achtergrond */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Schaduw voor diepte */
+    color: #fff;
+}
+
+#cart-items ul {
+    list-style-type: none; /* Verwijder lijstpunten */
+    padding: 0;
+    margin: 0;
+}
+
+#cart-items li {
+    display: flex;
+    justify-content: space-between; /* Zorg ervoor dat itemnaam en hoeveelheid gescheiden staan */
+    align-items: center;
+    padding: 10px 0;
+}
+
+#cart-items li:last-child {
+    border-bottom: none; /* Verwijder de lijn bij het laatste item */
+}
+
+#cart-items .item-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+}
+
+#cart-items .item-price {
+    font-size: 14px;
+    color: #888;
+}
+
+#cart-items .item-quantity {
+    background: #eaeaea;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    min-width: 40px;
+}
+
+#cart-items .delete-btn {
+    background: #ff4d4d; /* Felle rode kleur voor de delete button */
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#cart-items .delete-btn:hover {
+    background: #e60000;
 }

@@ -1,5 +1,6 @@
 <?php
 include 'backend/databaseConnect.php'; // Verbind met de database
+global $conn;
 
 // Haal categorieën op
 $query = "SELECT id, name, color FROM categories";
