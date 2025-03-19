@@ -1,12 +1,10 @@
 <?php
-$current_page = basename($_SERVER['PHP_SELF']);
-?>
-<?php
-include 'categories.php';
-?>
-<?php
+    session_start();
+    $current_page = basename($_SERVER['PHP_SELF']);
+    include 'categories.php';
     include 'backend/databaseConnect.php';
 ?>
+
 
 <!DOCTYPE html>
 <html lang="nl">
@@ -411,13 +409,24 @@ include 'categories.php';
     <div class="menu-table">
         <div class="menu-table-title">
             <h1>Table</h1><!-- hier moet nog een id komen voor de user die een table krijgt toegewezen -->
-            <h2>user huppidup</h2><!-- hier moet de naam van de username nog komen -->
+            <h2>user <?php
+                if (isset($users)) {
+                    foreach ($users as $user) {
+                        if ($user['id'] === $_SESSION['user_id']) {
+                            echo $user['username'];
+                        }
+                    }
+                }
+                else {
+                    echo "Guest";
+                }
+                        ?>
+            </h2>
         </div>
         <div class="menu-table-checkout">
             <div class="menu-checkout">
                 <div class="item-check">
                     <div id="cart" class="cart-container">
-                        <h2>Item-check</h2>
                         <ul id="cart-items"></ul>
                     </div>
                 </div>
@@ -451,6 +460,7 @@ include 'categories.php';
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 </body>

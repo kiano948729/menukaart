@@ -1,38 +1,25 @@
 <?php
-
+global $conn;
 session_start();
+require_once 'conn.php';
+
+// Verkrijg input
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-//1. Verbinding
-require_once 'conn.php';
-
-//2. Query
-$query = "
-        SELECT * FROM users WHERE username = :username
-    ";
-
-//3. Prepare
+// Zoek gebruiker in database
+$query = "SELECT * FROM users WHERE username = :username";
 $statement = $conn->prepare($query);
+$statement->execute([':username' => $username]);
 
-//4. Execute
-$statement->execute([
-    ":username" => $username
-]);
-
-//5. Retrieve data
 $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-if($statement->rowCount() < 1)
-{
-    die("Error: NEINNNN!");
+if (!$user || !password_verify($password, $user['password'])) {
+    die("Ongeldige gebruikersnaam of wachtwoord!");
 }
 
-if(!password_verify($password, $user['password']))
-{
-    die("Error: NEINNNNN!");
-}
-
+// Sla gebruikers-ID op in de sessie
 $_SESSION['user_id'] = $user['id'];
-header("Location: ../index.php");
+
+header("Location: ../menu.php");
 ?>

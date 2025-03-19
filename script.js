@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Min-knop Functionaliteit
     // Min-knop Functionaliteit
+
     decreaseButtons.forEach(button => {
         button.addEventListener("click", function () {
             const itemName = button.dataset.name;
