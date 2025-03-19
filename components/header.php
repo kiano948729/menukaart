@@ -10,6 +10,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <?php else: ?>
         <a href="../backend/login.php">Inloggen</a>
         <a href="../backend/register.php">Registreren</a>
-        <a href="../backend/guest.php">Ga verder als gast</a>
+        <a href="../backend/guest.php">Gast</a>
     <?php endif; ?>
 </nav>
