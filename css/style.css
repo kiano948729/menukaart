@@ -3,6 +3,7 @@ html, body {
     padding: 0; /* Verwijder standaard padding */
     height: 100%; /* Zorg dat html en body de volledige hoogte van de viewport innemen */
 }
+
 .body-background {
     background-image: url(../img/imageback.png);
     background-size: cover;
@@ -11,6 +12,185 @@ html, body {
     width: 100%;
     height: 100%;
     z-index: -1;
+}
+nav {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtiele schaduw voor diepte */
+    padding: 10px 30px;
+    position: sticky; /* Blijft bovenaan plakken bij scrollen */
+    top: 0;
+    z-index: 1000;
+}
+
+.index-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+
+.index-nav div a:first-child {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    padding-right: 30px;
+    transition: all 0.3s ease;
+}
+
+.index-nav div a:first-child:hover {
+    color: #bde4a5;
+}
+
+
+.index-nav div a {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.index-nav div a:hover {
+    color: #bde4a5;
+}
+
+.index-nav div a:hover::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transition: width 0.3s ease;
+}
+
+
+.index-nav div span,
+.index-nav div a {
+    color: #fff;
+    font-weight: normal;
+}
+
+.index-nav div span {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+/* Inlog-/uitlog-styling rechts */
+.index-nav div:last-child a {
+    background: #f5f5f5;
+    color: black;
+    font-size: 16px;
+    padding: 5px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.index-nav div:last-child a:hover {
+    background: #e1e1e1;
+    color: #2b431a;
+}
+
+/* Verklein menu op kleinere schermen */
+@media (max-width: 768px) {
+    .index-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .index-nav div a {
+        margin: 10px 0;
+        font-size: 16px;
+    }
+
+    .index-nav div:last-child a {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+.main-div {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-top: 10%;
+}
+
+.main-number-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    color: #fff;
+}
+
+.main-number-nav-text {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    justify-content: flex-start;
+    color: #fff;
+}
+.main-number-nav-text div h2{
+    color: #fff;
+    font-size: 50px;
+    margin:0;
+}
+.main-number-nav-text div h1{
+    color: #fff;
+    font-size: 100px;
+    margin: 0;
+}
+.main-number-nav-text div p{
+    color: #fff;
+    font-size: 20px;
+    margin: 0;
+}
+
+.main-number-nav > div {
+    display: inline-block;
+    font-weight: normal; /* Standaard gewicht normale nummers */
+    opacity: 0.5; /* Maak inactieve nummers minder opvallend */
+    transition: opacity 0.3s ease, font-weight 0.3s ease; /* Zorg voor een vloeiende overgang */
+}
+
+.main-number-nav > div.active {
+    font-weight: bold; /* Maak het actieve nummer dikker */
+    opacity: 1; /* Maak het actieve nummer volledig zichtbaar */
+}
+.main-lower-nav{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+.main-lower-nav-slogan{
+    width: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+.main-lower-nav-text{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+}
+.main-lower-nav-text div{
+    background-color: #5f5959;
+    opacity: 0.8;
+    width: 33.33%;
+    color: #fff;
+}
+.main-lower-nav-text div h2{
+    color: #fff;
 }
 
 .tabcontentWork {
@@ -37,7 +217,7 @@ html, body {
     /* Houdt de tekst links */
 }
 
-.work-nav-links h1 {
+.work-nav-links  h1 {
     color: #fff;
     display: flex;
     justify-content: center;
@@ -51,11 +231,12 @@ html, body {
 
 .menu-nav {
     border-radius: 30px 0px 0px 30px !important;
+    background: rgb(17, 19, 21);
 }
 
 .menu-page {
     width: 65%;
-    height: 900px;
+    height: 950px;
     background: rgb(17, 19, 21);
 }
 
@@ -74,7 +255,7 @@ html, body {
 }
 
 .menu-table-checkout {
-    min-height: 793px;
+    min-height: 843px;
     background: rgb(17, 19, 21);
     border-radius: 0px 0px 30px 0px;
 }
@@ -342,7 +523,7 @@ hr {
     height: 40px;
     background-color: rgb(45, 45, 45, 100);
     color: white;
-    border:  rgb(77, 77, 77, 100) 2px solid;
+    border: rgb(77, 77, 77, 100) 2px solid;
     border-radius: 10px;
     font-size: 18px; /* Vergroot tekst in knop */
     cursor: pointer; /* Hand-cursor voor interactie */
@@ -363,10 +544,12 @@ hr {
     width: 40px; /* Zorg voor consistente breedte */
     color: #fff;
 }
-.catogories-to-items{
+
+.catogories-to-items {
     height: auto;
     background-color: rgb(17, 19, 21);
 }
+
 #cart-items {
     max-width: 400px; /* Stel een maximale breedte in */
     margin: 20px auto; /* Horizontaal centreren */
@@ -430,7 +613,8 @@ hr {
 #cart-items .delete-btn:hover {
     background: #e60000;
 }
-.background-main-coloring{
+
+.background-main-coloring {
     background-color: rgb(17, 19, 21);
     height: 10000px;
     z-index: -1;

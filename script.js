@@ -172,3 +172,30 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const numberNavItems = document.querySelectorAll(".main-number-nav > div");
+    const sections = document.querySelectorAll(".main-number-nav-text > div");
+    let currentIndex = 0;
+
+    // Begin standaard met de eerste zichtbaar en actief
+    numberNavItems[currentIndex].classList.add("active");
+    sections.forEach((section, index) => {
+        section.style.display = index === 0 ? "block" : "none";
+    });
+
+    function showNextSection() {
+        // Verberg huidige sectie en verwijder actieve status voor nummer
+        sections[currentIndex].style.display = "none";
+        numberNavItems[currentIndex].classList.remove("active");
+
+        // Ga naar de volgende sectie (of reset naar de eerste)
+        currentIndex = (currentIndex + 1) % sections.length;
+
+        // Toon de volgende sectie en voeg actieve status toe aan nummer
+        sections[currentIndex].style.display = "block";
+        numberNavItems[currentIndex].classList.add("active");
+    }
+
+    // Wissel elke 4 seconden naar de volgende sectie en nummer
+    setInterval(showNextSection, 4000);
+});
