@@ -20,6 +20,8 @@ if (!$user || !password_verify($password, $user['password'])) {
 
 // Sla gebruikers-ID op in de sessie
 $_SESSION['user_id'] = $user['id'];
+$_SESSION['role'] = $user['role'];
+$_SESSION['username'] = $user['username'];
 
 header("Location: ../menu.php");
 ?>

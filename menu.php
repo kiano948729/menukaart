@@ -1,10 +1,10 @@
 <?php
-    session_start();
-    $current_page = basename($_SERVER['PHP_SELF']);
-    include 'categories.php';
-    include 'backend/databaseConnect.php';
+session_start();
+global $conn;
+$current_page = basename($_SERVER['PHP_SELF']);
+include 'categories.php';
+include 'backend/databaseConnect.php';
 ?>
-
 
 <!DOCTYPE html>
 <html lang="nl">
@@ -35,7 +35,11 @@
         <main>
             <div class="search-bar">
                 <form action="search.php" method="GET" class="search-container">
-                    <input type="text" name="query" placeholder="Search">
+                    <input type="text" name="query"
+                           placeholder="Search"><?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin'): ?>
+                        <button type="button" onclick="window.location.href='backend/addItem.php'">Beheerderspaneel</button>
+                    <?php endif; ?>
+
                 </form>
             </div>
             <div class="menu-content">
@@ -56,9 +60,9 @@
                                         <?php
                                         if (isset($categories) && is_array($categories)):
                                             foreach ($categories as $category): ?>
-                                            <?php if ($category['name'] === "Breakfast"): ?>
-                                                <p><?php echo $category['item_count']; ?> items</p>
-                                            <?php endif; ?>
+                                                <?php if ($category['name'] === "Breakfast"): ?>
+                                                    <p><?php echo $category['item_count']; ?> items</p>
+                                                <?php endif; ?>
                                             <?php endforeach; ?>
                                         <?php else: ?>
                                             <p>No categories available.</p>
@@ -161,16 +165,24 @@
                                                     <?php foreach ($category['items'] as $item): ?>
                                                         <div class="item">
                                                             <div class="item-details">
-                                                                <p>Product: <strong><?php echo $item['name']; ?></strong></p>
-                                                                <p>Prijs: €<?php echo number_format($item['price'], 2); ?></p>
-                                                                <p>Stock: <span class="item-stock" data-name="<?php echo $item['name']; ?>">
+                                                                <p>Product:
+                                                                    <strong><?php echo $item['name']; ?></strong></p>
+                                                                <p>Prijs:
+                                                                    €<?php echo number_format($item['price'], 2); ?></p>
+                                                                <p>Stock: <span class="item-stock"
+                                                                                data-name="<?php echo $item['name']; ?>">
                                                                 <?php echo $item['stock']; ?></span></p>
                                                             </div>
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
-                                                                <button class="decrease-btn" data-name="<?php echo $item['name']; ?>">-</button>
-                                                                <span class="item-quantity" data-name="<?php echo $item['name']; ?>">0</span>
-                                                                <button class="increase-btn" data-name="<?php echo $item['name']; ?>">+</button>
+                                                                <button class="decrease-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                </button>
+                                                                <span class="item-quantity"
+                                                                      data-name="<?php echo $item['name']; ?>">0</span>
+                                                                <button class="increase-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     <?php endforeach; ?>
@@ -191,16 +203,24 @@
                                                     <?php foreach ($category['items'] as $item): ?>
                                                         <div class="item">
                                                             <div class="item-details">
-                                                                <p>Product: <strong><?php echo $item['name']; ?></strong></p>
-                                                                <p>Prijs: €<?php echo number_format($item['price'], 2); ?></p>
-                                                                <p>Stock: <span class="item-stock" data-name="<?php echo $item['name']; ?>">
+                                                                <p>Product:
+                                                                    <strong><?php echo $item['name']; ?></strong></p>
+                                                                <p>Prijs:
+                                                                    €<?php echo number_format($item['price'], 2); ?></p>
+                                                                <p>Stock: <span class="item-stock"
+                                                                                data-name="<?php echo $item['name']; ?>">
                                                                 <?php echo $item['stock']; ?></span></p>
                                                             </div>
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
-                                                                <button class="decrease-btn" data-name="<?php echo $item['name']; ?>">-</button>
-                                                                <span class="item-quantity" data-name="<?php echo $item['name']; ?>">0</span>
-                                                                <button class="increase-btn" data-name="<?php echo $item['name']; ?>">+</button>
+                                                                <button class="decrease-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                </button>
+                                                                <span class="item-quantity"
+                                                                      data-name="<?php echo $item['name']; ?>">0</span>
+                                                                <button class="increase-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     <?php endforeach; ?>
@@ -221,16 +241,24 @@
                                                     <?php foreach ($category['items'] as $item): ?>
                                                         <div class="item">
                                                             <div class="item-details">
-                                                                <p>Product: <strong><?php echo $item['name']; ?></strong></p>
-                                                                <p>Prijs: €<?php echo number_format($item['price'], 2); ?></p>
-                                                                <p>Stock: <span class="item-stock" data-name="<?php echo $item['name']; ?>">
+                                                                <p>Product:
+                                                                    <strong><?php echo $item['name']; ?></strong></p>
+                                                                <p>Prijs:
+                                                                    €<?php echo number_format($item['price'], 2); ?></p>
+                                                                <p>Stock: <span class="item-stock"
+                                                                                data-name="<?php echo $item['name']; ?>">
                                                                 <?php echo $item['stock']; ?></span></p>
                                                             </div>
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
-                                                                <button class="decrease-btn" data-name="<?php echo $item['name']; ?>">-</button>
-                                                                <span class="item-quantity" data-name="<?php echo $item['name']; ?>">0</span>
-                                                                <button class="increase-btn" data-name="<?php echo $item['name']; ?>">+</button>
+                                                                <button class="decrease-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                </button>
+                                                                <span class="item-quantity"
+                                                                      data-name="<?php echo $item['name']; ?>">0</span>
+                                                                <button class="increase-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     <?php endforeach; ?>
@@ -251,16 +279,24 @@
                                                     <?php foreach ($category['items'] as $item): ?>
                                                         <div class="item">
                                                             <div class="item-details">
-                                                                <p>Product: <strong><?php echo $item['name']; ?></strong></p>
-                                                                <p>Prijs: €<?php echo number_format($item['price'], 2); ?></p>
-                                                                <p>Stock: <span class="item-stock" data-name="<?php echo $item['name']; ?>">
+                                                                <p>Product:
+                                                                    <strong><?php echo $item['name']; ?></strong></p>
+                                                                <p>Prijs:
+                                                                    €<?php echo number_format($item['price'], 2); ?></p>
+                                                                <p>Stock: <span class="item-stock"
+                                                                                data-name="<?php echo $item['name']; ?>">
                                                                 <?php echo $item['stock']; ?></span></p>
                                                             </div>
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
-                                                                <button class="decrease-btn" data-name="<?php echo $item['name']; ?>">-</button>
-                                                                <span class="item-quantity" data-name="<?php echo $item['name']; ?>">0</span>
-                                                                <button class="increase-btn" data-name="<?php echo $item['name']; ?>">+</button>
+                                                                <button class="decrease-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                </button>
+                                                                <span class="item-quantity"
+                                                                      data-name="<?php echo $item['name']; ?>">0</span>
+                                                                <button class="increase-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     <?php endforeach; ?>
@@ -283,16 +319,24 @@
                                                     <?php foreach ($category['items'] as $item): ?>
                                                         <div class="item">
                                                             <div class="item-details">
-                                                                <p>Product: <strong><?php echo $item['name']; ?></strong></p>
-                                                                <p>Prijs: €<?php echo number_format($item['price'], 2); ?></p>
-                                                                <p>Stock: <span class="item-stock" data-name="<?php echo $item['name']; ?>">
+                                                                <p>Product:
+                                                                    <strong><?php echo $item['name']; ?></strong></p>
+                                                                <p>Prijs:
+                                                                    €<?php echo number_format($item['price'], 2); ?></p>
+                                                                <p>Stock: <span class="item-stock"
+                                                                                data-name="<?php echo $item['name']; ?>">
                                                                 <?php echo $item['stock']; ?></span></p>
                                                             </div>
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
-                                                                <button class="decrease-btn" data-name="<?php echo $item['name']; ?>">-</button>
-                                                                <span class="item-quantity" data-name="<?php echo $item['name']; ?>">0</span>
-                                                                <button class="increase-btn" data-name="<?php echo $item['name']; ?>">+</button>
+                                                                <button class="decrease-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                </button>
+                                                                <span class="item-quantity"
+                                                                      data-name="<?php echo $item['name']; ?>">0</span>
+                                                                <button class="increase-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     <?php endforeach; ?>
@@ -313,16 +357,24 @@
                                                     <?php foreach ($category['items'] as $item): ?>
                                                         <div class="item">
                                                             <div class="item-details">
-                                                                <p>Product: <strong><?php echo $item['name']; ?></strong></p>
-                                                                <p>Prijs: €<?php echo number_format($item['price'], 2); ?></p>
-                                                                <p>Stock: <span class="item-stock" data-name="<?php echo $item['name']; ?>">
+                                                                <p>Product:
+                                                                    <strong><?php echo $item['name']; ?></strong></p>
+                                                                <p>Prijs:
+                                                                    €<?php echo number_format($item['price'], 2); ?></p>
+                                                                <p>Stock: <span class="item-stock"
+                                                                                data-name="<?php echo $item['name']; ?>">
                                                                 <?php echo $item['stock']; ?></span></p>
                                                             </div>
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
-                                                                <button class="decrease-btn" data-name="<?php echo $item['name']; ?>">-</button>
-                                                                <span class="item-quantity" data-name="<?php echo $item['name']; ?>">0</span>
-                                                                <button class="increase-btn" data-name="<?php echo $item['name']; ?>">+</button>
+                                                                <button class="decrease-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                </button>
+                                                                <span class="item-quantity"
+                                                                      data-name="<?php echo $item['name']; ?>">0</span>
+                                                                <button class="increase-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     <?php endforeach; ?>
@@ -343,16 +395,24 @@
                                                     <?php foreach ($category['items'] as $item): ?>
                                                         <div class="item">
                                                             <div class="item-details">
-                                                                <p>Product: <strong><?php echo $item['name']; ?></strong></p>
-                                                                <p>Prijs: €<?php echo number_format($item['price'], 2); ?></p>
-                                                                <p>Stock: <span class="item-stock" data-name="<?php echo $item['name']; ?>">
+                                                                <p>Product:
+                                                                    <strong><?php echo $item['name']; ?></strong></p>
+                                                                <p>Prijs:
+                                                                    €<?php echo number_format($item['price'], 2); ?></p>
+                                                                <p>Stock: <span class="item-stock"
+                                                                                data-name="<?php echo $item['name']; ?>">
                                                                 <?php echo $item['stock']; ?></span></p>
                                                             </div>
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
-                                                                <button class="decrease-btn" data-name="<?php echo $item['name']; ?>">-</button>
-                                                                <span class="item-quantity" data-name="<?php echo $item['name']; ?>">0</span>
-                                                                <button class="increase-btn" data-name="<?php echo $item['name']; ?>">+</button>
+                                                                <button class="decrease-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                </button>
+                                                                <span class="item-quantity"
+                                                                      data-name="<?php echo $item['name']; ?>">0</span>
+                                                                <button class="increase-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     <?php endforeach; ?>
@@ -373,16 +433,24 @@
                                                     <?php foreach ($category['items'] as $item): ?>
                                                         <div class="item">
                                                             <div class="item-details">
-                                                                <p>Product: <strong><?php echo $item['name']; ?></strong></p>
-                                                                <p>Prijs: €<?php echo number_format($item['price'], 2); ?></p>
-                                                                <p>Stock: <span class="item-stock" data-name="<?php echo $item['name']; ?>">
+                                                                <p>Product:
+                                                                    <strong><?php echo $item['name']; ?></strong></p>
+                                                                <p>Prijs:
+                                                                    €<?php echo number_format($item['price'], 2); ?></p>
+                                                                <p>Stock: <span class="item-stock"
+                                                                                data-name="<?php echo $item['name']; ?>">
                                                                 <?php echo $item['stock']; ?></span></p>
                                                             </div>
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
-                                                                <button class="decrease-btn" data-name="<?php echo $item['name']; ?>">-</button>
-                                                                <span class="item-quantity" data-name="<?php echo $item['name']; ?>">0</span>
-                                                                <button class="increase-btn" data-name="<?php echo $item['name']; ?>">+</button>
+                                                                <button class="decrease-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                </button>
+                                                                <span class="item-quantity"
+                                                                      data-name="<?php echo $item['name']; ?>">0</span>
+                                                                <button class="increase-btn"
+                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     <?php endforeach; ?>
@@ -410,17 +478,14 @@
         <div class="menu-table-title">
             <h1>Table</h1><!-- hier moet nog een id komen voor de user die een table krijgt toegewezen -->
             <h2>user <?php
-                if (isset($users)) {
-                    foreach ($users as $user) {
-                        if ($user['id'] === $_SESSION['user_id']) {
-                            echo $user['username'];
-                        }
-                    }
+                if (isset($_SESSION['username'])) {
+                    echo $_SESSION['username'];
                 }
                 else {
                     echo "Guest";
                 }
-                        ?>
+                ?>
+
             </h2>
         </div>
         <div class="menu-table-checkout">
