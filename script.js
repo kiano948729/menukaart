@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Zorg ervoor dat de eerste tab automatisch opent
     const firstTabLink = document.querySelector(".menuLinks");
     if (firstTabLink) firstTabLink.click();
+    updateCartDOM();
 });
 
 function openTab(evt, tabName) {
@@ -34,7 +35,6 @@ function openCategory(categoryName) {
     });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
     const cartItemsList = document.getElementById("cart-items"); // Winkelwagen UL
     const increaseButtons = document.querySelectorAll(".increase-btn");
     const decreaseButtons = document.querySelectorAll(".decrease-btn");
@@ -124,6 +124,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Winkelwagen DOM Bijwerken
     function updateCartDOM() {
         cartItemsList.innerHTML = ""; // Leeg de UL
+        if(Object.keys(cart).length === 0) return (
+            cartItemsList.innerHTML = "<li class='img-no-items'><img src='/img/Ontwerp zonder titel (6).png' alt='foto' class='no-items-img'></li><li>Je hebt nog geen items in je winkelwagen.</li>"
+        )
 
         for (const itemName in cart) {
             const cartItem = cart[itemName];
@@ -171,7 +174,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
-});
 document.addEventListener("DOMContentLoaded", function () {
     const numberNavItems = document.querySelectorAll(".main-number-nav > div");
     const sections = document.querySelectorAll(".main-number-nav-text > div");

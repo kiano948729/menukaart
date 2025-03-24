@@ -623,3 +623,7 @@ hr {
     color: #fff;
     font-size: larger;
 }
+.no-items-img{
+    height: 100px;
+    width: 100px;
+}
