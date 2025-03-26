@@ -124,9 +124,24 @@ function openCategory(categoryName) {
     // Winkelwagen DOM Bijwerken
     function updateCartDOM() {
         cartItemsList.innerHTML = ""; // Leeg de UL
-        if(Object.keys(cart).length === 0) return (
-            cartItemsList.innerHTML = "<li class='img-no-items'><img src='/img/Ontwerp zonder titel (6).png' alt='foto' class='no-items-img'></li><li>Je hebt nog geen items in je winkelwagen.</li>"
-        )
+        if (Object.keys(cart).length === 0) {
+            // Voeg styling toe voor gecentreerde weergave
+            cartItemsList.classList.add("empty");
+            return (cartItemsList.innerHTML = `
+            <div class='total-img-text-noit'>
+                <ul class='img-no-items'>
+                    <img src='/img/Ontwerp zonder titel (6).png' alt='foto' class='no-items-img'>
+                </ul>
+                <ul class='img-no-items'>Je hebt nog geen items in je winkelwagen.</ul>
+            </div>
+        `);
+        }
+        else {
+            // Verwijder de lege styling als er items in de winkelwagen zijn
+            cartItemsList.classList.remove("empty");
+        }
+
+
 
         for (const itemName in cart) {
             const cartItem = cart[itemName];

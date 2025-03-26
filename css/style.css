@@ -558,6 +558,12 @@ hr {
     background: rgb(77, 77, 77, 100); /* Lichtgrijze achtergrond */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Schaduw voor diepte */
     color: #fff;
+    height: 450px;
+}
+#cart-items.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #cart-items ul {
@@ -626,4 +632,11 @@ hr {
 .no-items-img{
     height: 100px;
     width: 100px;
+    margin-bottom: 40px;
+}
+.total-img-text-noit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

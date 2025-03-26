@@ -5,38 +5,28 @@ global $conn;
 
 // Controleer of de gebruiker ingelogd is en admin is
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    die("Toegang geweigerd! Alleen admins mogen items toevoegen.");
+    die("Toegang geweigerd! Alleen admins mogen items verwijderen.");
 }
 
-// Controleer of het formulier is ingediend
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $category_id = $_POST['category_id'];
-    $name = $_POST['name'];
-    $price = $_POST['price'];
-    $stock = $_POST['stock'];
-
-    // Validatie om te voorkomen dat lege velden worden opgeslagen
-    if (empty($category_id) || empty($name) || empty($price) || !is_numeric($stock)) {
-        $error = "Vul alle velden in correct in.";
-    } else {
-        // Item toevoegen aan de database
-        $query = "INSERT INTO items (category_id, name, price, stock) VALUES (:category_id, :name, :price, :stock)";
-        $stmt = $conn->prepare($query);
-        $stmt->execute([
-            ':category_id' => $category_id,
-            ':name' => $name,
-            ':price' => $price,
-            ':stock' => $stock
-        ]);
-        $success = "Item succesvol toegevoegd!";
-    }
-}
-
-// Haal beschikbare categorieën op voor de dropdown
-$query = "SELECT id, name FROM categories";
+// Haal alle items op voor weergave
+$query = "SELECT id, category_id, name, price, stock FROM items";
 $stmt = $conn->prepare($query);
 $stmt->execute();
-$categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Verwijder een item als een delete-verzoek is ingediend
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_item_id'])) {
+    $deleteItemId = $_POST['delete_item_id'];
+
+    $deleteQuery = "DELETE FROM items WHERE id = :id";
+    $deleteStmt = $conn->prepare($deleteQuery);
+    $deleteStmt->execute([':id' => $deleteItemId]);
+
+    // Verwerk een succesmelding
+    $success = "Item succesvol verwijderd!";
+    header("Location: deleteItems.php"); // Verwijst terug naar dezelfde pagina om POST te voorkomen
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -44,40 +34,61 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item Toevoegen</title>
+    <title>Items Beheren</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 <div class="container">
-    <h1>Item Toevoegen</h1>
+    <h1>Items Beheren</h1>
+    <a href="newItem.php">
+        Nieuw Item Toevoegen
+    </a>
 
-    <!-- Toon succes- of foutmelding -->
+
+    <!-- Toon succesmelding indien een item succesvol werd verwijderd -->
     <?php if (isset($success)): ?>
         <p style="color: green;"><?= $success ?></p>
-    <?php elseif (isset($error)): ?>
-        <p style="color: red;"><?= $error ?></p>
     <?php endif; ?>
 
-    <form action="addItem.php" method="POST">
-        <label for="category_id">Categorie</label>
-        <select name="category_id" id="category_id" required>
-            <option value="">Selecteer een categorie</option>
-            <?php foreach ($categories as $category): ?>
-                <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+    <!-- Lijst van items met een delete-knop -->
+    <?php if (!empty($items)): ?>
+        <table>
+            <thead>
+            <tr>
+                <th>Item Naam</th>
+                <th>Prijs</th>
+                <th>Voorraad</th>
+                <th>categorie</th>
+                <th>Actie</th>
+                <th>Update</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($items as $item): ?>
+                <tr>
+                    <td><?= htmlspecialchars($item['name']) ?></td>
+                    <td>€<?= number_format($item['price'], 2, ',', '.') ?></td>
+                    <td><?= intval($item['stock']) ?></td>
+                    <td><?= htmlspecialchars($item['category_id']) ?></td>
+                    <td>
+                        <form method="POST" action="deleteItem.php" onsubmit="return confirm('Weet je zeker dat je dit item wilt verwijderen?');">
+                            <input type="hidden" name="delete_item_id" value="<?= $item['id'] ?>">
+                            <button type="submit" style="color: red;">Verwijder</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="GET" action="updateItem.php">
+                            <input type="hidden" name="id" value="<?= $item['id'] ?>">
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                </tr>
             <?php endforeach; ?>
-        </select>
-
-        <label for="name">Naam</label>
-        <input type="text" id="name" name="name" placeholder="Item naam" required>
-
-        <label for="price">Prijs</label>
-        <input type="text" id="price" name="price" placeholder="Prijs (bijv. 10.99)" required>
-
-        <label for="stock">Voorraad</label>
-        <input type="number" id="stock" name="stock" placeholder="Aantal op voorraad" required>
-
-        <button type="submit">Item Toevoegen</button>
-    </form>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p>Geen items gevonden.</p>
+    <?php endif; ?>
 </div>
 </body>
 </html>
