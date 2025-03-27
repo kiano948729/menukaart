@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_item_id'])) {
     <a href="newItem.php">
         Nieuw Item Toevoegen
     </a>
+    <a href="../menu.php">terug naar menu</a>
 
 
     <!-- Toon succesmelding indien een item succesvol werd verwijderd -->

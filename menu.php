@@ -176,12 +176,14 @@ include 'backend/databaseConnect.php';
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
                                                                 <button class="decrease-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']; ?>">-
                                                                 </button>
                                                                 <span class="item-quantity"
                                                                       data-name="<?php echo $item['name']; ?>">0</span>
                                                                 <button class="increase-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']?>">+
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -214,12 +216,14 @@ include 'backend/databaseConnect.php';
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
                                                                 <button class="decrease-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']; ?>">-
                                                                 </button>
                                                                 <span class="item-quantity"
                                                                       data-name="<?php echo $item['name']; ?>">0</span>
                                                                 <button class="increase-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']?>">+
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -252,12 +256,15 @@ include 'backend/databaseConnect.php';
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
                                                                 <button class="decrease-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']; ?>">-
                                                                 </button>
                                                                 <span class="item-quantity"
                                                                       data-name="<?php echo $item['name']; ?>">0</span>
                                                                 <button class="increase-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']?>">+
+
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -290,12 +297,15 @@ include 'backend/databaseConnect.php';
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
                                                                 <button class="decrease-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']; ?>">-
                                                                 </button>
                                                                 <span class="item-quantity"
                                                                       data-name="<?php echo $item['name']; ?>">0</span>
                                                                 <button class="increase-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']?>">+
+
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -330,12 +340,14 @@ include 'backend/databaseConnect.php';
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
                                                                 <button class="decrease-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']; ?>">-
                                                                 </button>
                                                                 <span class="item-quantity"
                                                                       data-name="<?php echo $item['name']; ?>">0</span>
                                                                 <button class="increase-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']?>">+
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -368,12 +380,14 @@ include 'backend/databaseConnect.php';
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
                                                                 <button class="decrease-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']; ?>">-
                                                                 </button>
                                                                 <span class="item-quantity"
                                                                       data-name="<?php echo $item['name']; ?>">0</span>
                                                                 <button class="increase-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']?>">+
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -406,12 +420,15 @@ include 'backend/databaseConnect.php';
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
                                                                 <button class="decrease-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']; ?>">-
                                                                 </button>
                                                                 <span class="item-quantity"
                                                                       data-name="<?php echo $item['name']; ?>">0</span>
                                                                 <button class="increase-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']?>">+
+
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -444,12 +461,15 @@ include 'backend/databaseConnect.php';
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
                                                                 <button class="decrease-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">-
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                    data-price="<?php echo $item['price']; ?>">-
+
                                                                 </button>
                                                                 <span class="item-quantity"
                                                                       data-name="<?php echo $item['name']; ?>">0</span>
                                                                 <button class="increase-btn"
-                                                                        data-name="<?php echo $item['name']; ?>">+
+                                                                        data-name="<?php echo $item['name']; ?>"
+                                                                        data-price="<?php echo $item['price']; ?>">+
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -496,7 +516,7 @@ include 'backend/databaseConnect.php';
                     </div>
                 </div>
                 <div class="item-payment">
-                    <h2 class="h2-item-check">Payement Method</h2>
+                    <h2 class="h2-item-check">Payement Method, prijs: <span id="total-price">€0.00</span></h2>
                     <div class="payement-buttons">
                         <div class="payement-button">
                             <i class="fa-brands fa-cc-apple-pay" style="color: #7e7f81;"></i>

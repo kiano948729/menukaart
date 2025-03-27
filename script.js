@@ -1,10 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Zorg ervoor dat de eerste tab automatisch opent
     const firstTabLink = document.querySelector(".menuLinks");
-    if (firstTabLink) firstTabLink.click();
+    if (firstTabLink) {
+        firstTabLink.click();
+    }
+
     updateCartDOM();
+    updateTotalPrice();
 });
 
+// Winkelwagen object om items bij te houden
+const cart = {};
+
+// Functie om tabs te beheren
 function openTab(evt, tabName) {
     const tabcontentWork = document.getElementsByClassName("tabcontentWork");
     for (let i = 0; i < tabcontentWork.length; i++) {
@@ -20,199 +27,161 @@ function openTab(evt, tabName) {
     evt.currentTarget.classList.add("active");
 }
 
+// Functie om categorieën te tonen of te verbergen
 function openCategory(categoryName) {
-    // Selecteer alle secties met items
     const itemSections = document.querySelectorAll(".item-section");
 
-    // Loop door alle secties en sluit ze, behalve als ze overeenkomen met de categorie
     itemSections.forEach(section => {
         if (section.id === categoryName + "Items") {
-            // Toggle de zichtbaarheid als er opnieuw op wordt geklikt
             section.style.display = section.style.display === 'block' ? 'none' : 'block';
         } else {
-            section.style.display = 'none'; // Sluit alle andere secties
+            section.style.display = 'none';
         }
     });
 }
 
-    const cartItemsList = document.getElementById("cart-items"); // Winkelwagen UL
-    const increaseButtons = document.querySelectorAll(".increase-btn");
-    const decreaseButtons = document.querySelectorAll(".decrease-btn");
+// Verhoog de hoeveelheid van een item met de knop
+const increaseButtons = document.querySelectorAll(".increase-btn");
+increaseButtons.forEach(button => {
+    button.addEventListener("click", function () {
+        const itemName = button.dataset.name;
+        const itemPrice = parseFloat(button.dataset.price) || 0;
+        const quantityElement = document.querySelector(`.item-quantity[data-name="${itemName}"]`);
+        const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
 
-    // Winkelwagen object
-    const cart = {};
+        let quantity = parseInt(quantityElement.textContent, 10);
+        let stock = parseInt(stockElement.textContent, 10);
 
-    // Plus-knop Functionaliteit
-    increaseButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            const itemName = button.dataset.name;
-            const itemPrice = parseFloat(button.dataset.price); // Zorg ervoor dat je een numerieke prijs hebt
-            const quantityElement = document.querySelector(`.item-quantity[data-name="${itemName}"]`);
-            const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
+        if (stock > 0) {
+            // Update de voorraad en hoeveelheid
+            quantity++;
+            stock--;
+            quantityElement.textContent = quantity;
+            stockElement.textContent = stock;
 
-            let quantity = parseInt(quantityElement.textContent, 10);
-            let stock = parseInt(stockElement.textContent, 10);
-
-            // Controleer of er voorraad is
-            if (stock > 0) {
-                // Update voorraad en hoeveelheid
-                quantity++;
-                stock--;
-                quantityElement.textContent = quantity;
-                stockElement.textContent = stock;
-
-                // Voeg product toe aan winkelwagen of update hoeveelheid
-                if (cart[itemName]) {
-                    cart[itemName].quantity++;
-                    cart[itemName].totalPrice += itemPrice; // Total prijs bijwerken
-                } else {
-                    cart[itemName] = {
-                        name: itemName,
-                        price: itemPrice,
-                        quantity: 1,
-                        totalPrice: itemPrice // Bij een enkel item is de prijs gelijk aan de totale prijs
-                    };
-                }
-
-                // Update winkelwagen DOM
-                updateCartDOM();
+            // Werk het cart-object bij
+            if (cart[itemName]) {
+                cart[itemName].quantity++;
+                cart[itemName].totalPrice += itemPrice;
             } else {
-                alert("Niet genoeg voorraad beschikbaar!");
+                cart[itemName] = {
+                    name: itemName,
+                    price: itemPrice,
+                    quantity: 1,
+                    totalPrice: itemPrice
+                };
             }
-        });
-    });
 
-    // Min-knop Functionaliteit
-    // Min-knop Functionaliteit
-
-    decreaseButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            const itemName = button.dataset.name;
-            const quantityElement = document.querySelector(`.item-quantity[data-name="${itemName}"]`);
-            const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
-
-            // Haal huidige voorraad en hoeveelheid uit DOM
-            let quantity = parseInt(quantityElement.textContent, 10);
-            let stock = parseInt(stockElement.textContent, 10);
-
-            // Controleer of er daadwerkelijk een item in de winkelwagen zit
-            if (cart[itemName] && cart[itemName].quantity > 0) {
-                // Verminder hoeveelheid en verhoog voorraad
-                quantity--;
-                stock++;
-
-                // Werk de hoeveelheden bij in het winkelwagen object
-                cart[itemName].quantity--;
-
-                // Verwijder het item als de hoeveelheid 0 is
-                if (cart[itemName].quantity === 0) {
-                    delete cart[itemName];
-                }
-
-                // Update DOM elementen
-                quantityElement.textContent = quantity; // Update visuele hoeveelheid
-                stockElement.textContent = stock; // Update visuele voorraad
-
-                // Update winkelwagen in de DOM
-                updateCartDOM();
-            } else {
-                alert("Geen items meer in het winkelwagentje om te verwijderen.");
-            }
-        });
-    });
-
-    // Winkelwagen DOM Bijwerken
-    function updateCartDOM() {
-        cartItemsList.innerHTML = ""; // Leeg de UL
-        if (Object.keys(cart).length === 0) {
-            // Voeg styling toe voor gecentreerde weergave
-            cartItemsList.classList.add("empty");
-            return (cartItemsList.innerHTML = `
-            <div class='total-img-text-noit'>
-                <ul class='img-no-items'>
-                    <img src='/img/Ontwerp zonder titel (6).png' alt='foto' class='no-items-img'>
-                </ul>
-                <ul class='img-no-items'>Je hebt nog geen items in je winkelwagen.</ul>
-            </div>
-        `);
+            // Update winkelwagen DOM en totale prijs
+            updateCartDOM();
+            updateTotalPrice();
+        } else {
+            alert("Niet genoeg voorraad beschikbaar!");
         }
-        else {
-            // Verwijder de lege styling als er items in de winkelwagen zijn
-            cartItemsList.classList.remove("empty");
-        }
-
-
-
-        for (const itemName in cart) {
-            const cartItem = cart[itemName];
-
-            // Winkelwagen item + Delete-knop
-            const li = document.createElement("li");
-            li.innerHTML = `
-            ${cartItem.name} - Aantal: ${cartItem.quantity} - Prijs: €${cartItem.totalPrice.toFixed(2)}
-                <button class="delete-btn" data-name="${cartItem.name}">Verwijder</button>
-
-            `;
-
-            cartItemsList.appendChild(li);
-        }
-
-        // Voeg eventlistener toe aan nieuwe verwijderknoppen
-        addDeleteEventListeners();
-    }
-
-    // Delete-knoppen Functionaliteit
-    function addDeleteEventListeners() {
-        const deleteButtons = document.querySelectorAll(".delete-btn");
-
-        deleteButtons.forEach(button => {
-            button.addEventListener("click", function () {
-                const itemName = button.dataset.name;
-                const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
-                const quantityElement = document.querySelector(`.item-quantity[data-name="${itemName}"]`);
-
-                if (cart[itemName]) {
-                    // Verhoog voorraad
-                    let quantity = parseInt(quantityElement.textContent, 10);
-                    let stock = parseInt(stockElement.textContent, 10);
-                    stock += cart[itemName].quantity;
-                    stockElement.textContent = stock;
-                    quantity = 0;
-                    quantityElement.textContent = quantity;
-                    stockElement.textContent = stock;
-
-                    // Verwijder item volledig uit winkelwagen
-                    delete cart[itemName];
-                    // Update DOM winkelwagen
-                    updateCartDOM();
-                }
-            });
-        });
-    }
-document.addEventListener("DOMContentLoaded", function () {
-    const numberNavItems = document.querySelectorAll(".main-number-nav > div");
-    const sections = document.querySelectorAll(".main-number-nav-text > div");
-    let currentIndex = 0;
-
-    // Begin standaard met de eerste zichtbaar en actief
-    numberNavItems[currentIndex].classList.add("active");
-    sections.forEach((section, index) => {
-        section.style.display = index === 0 ? "block" : "none";
     });
-
-    function showNextSection() {
-        // Verberg huidige sectie en verwijder actieve status voor nummer
-        sections[currentIndex].style.display = "none";
-        numberNavItems[currentIndex].classList.remove("active");
-
-        // Ga naar de volgende sectie (of reset naar de eerste)
-        currentIndex = (currentIndex + 1) % sections.length;
-
-        // Toon de volgende sectie en voeg actieve status toe aan nummer
-        sections[currentIndex].style.display = "block";
-        numberNavItems[currentIndex].classList.add("active");
-    }
-
-    // Wissel elke 4 seconden naar de volgende sectie en nummer
-    setInterval(showNextSection, 4000);
 });
+
+// Verminder hoeveelheid van een item met de knop
+const decreaseButtons = document.querySelectorAll(".decrease-btn");
+decreaseButtons.forEach(button => {
+    button.addEventListener("click", function () {
+        const itemName = button.dataset.name;
+        const itemPrice = parseFloat(button.dataset.price) || 0;
+        const quantityElement = document.querySelector(`.item-quantity[data-name="${itemName}"]`);
+        const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
+
+        let quantity = parseInt(quantityElement.textContent, 10);
+        let stock = parseInt(stockElement.textContent, 10);
+
+        if (cart[itemName] && cart[itemName].quantity > 0) {
+            // Verminder de hoeveelheid en verhoog de voorraad
+            quantity--;
+            stock++;
+            cart[itemName].quantity--;
+            cart[itemName].totalPrice -= itemPrice;
+
+            // Verwijder het item uit de winkelwagen als de hoeveelheid 0 is
+            if (cart[itemName].quantity === 0) {
+                delete cart[itemName];
+            }
+
+            // Werk DOM bij
+            quantityElement.textContent = quantity;
+            stockElement.textContent = stock;
+
+            updateCartDOM();
+            updateTotalPrice();
+        }
+    });
+});
+
+// Verwijder een item volledig met de 'verwijder-knop'
+function addRemoveButtonListeners() {
+    const removeButtons = document.querySelectorAll(".delete-btn");
+    removeButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const itemName = button.dataset.name;
+            const quantityElement = document.querySelector(`.item-quantity[data-name="${itemName}"]`);
+            const stockElement = document.querySelector(`.item-stock[data-name="${itemName}"]`);
+
+            if (cart[itemName]) {
+                // Herstel de voorraad naar de oorspronkelijke waarde
+                const quantity = cart[itemName].quantity;
+                const stock = parseInt(stockElement.textContent, 10) + quantity;
+
+                stockElement.textContent = stock; // Voorraad herstellen
+                quantityElement.textContent = "0"; // Hoeveelheid op 0 zetten
+
+                delete cart[itemName]; // Verwijder het item uit de winkelwagen
+
+                // Update de winkelwagen weergave en totale prijs
+                updateCartDOM();
+                updateTotalPrice();
+            }
+        });
+    });
+}
+
+// Functie om de winkelwagen in de DOM bij te werken
+function updateCartDOM() {
+    const cartItemsList = document.getElementById("cart-items");
+    cartItemsList.innerHTML = ""; // Leeg de huidige lijst
+
+    for (const itemName in cart) {
+        const item = cart[itemName];
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            ${item.name} - €${item.price.toFixed(2)} x ${item.quantity} = €${item.totalPrice.toFixed(2)}
+            <button class="delete-btn" data-name="${item.name}">Verwijderen</button>
+        `;
+        cartItemsList.appendChild(li);
+    }
+
+    addRemoveButtonListeners(); // Voeg verwijder knop-functionaliteit toe
+}
+
+// Bereken de totale prijs van de winkelwagen
+function calculateTotalPrice() {
+    let totalPrice = 0;
+
+    for (const itemName in cart) {
+        if (cart.hasOwnProperty(itemName)) {
+            totalPrice += cart[itemName].totalPrice;
+        }
+    }
+
+    return totalPrice;
+}
+
+// Update de totale prijs in de DOM
+function updateTotalPrice() {
+    const totalPrice = calculateTotalPrice();
+    const totalPriceElement = document.getElementById("total-price");
+
+    if (totalPriceElement) {
+        totalPriceElement.textContent = totalPrice > 0
+            ? "€" + totalPrice.toFixed(2)
+            : "€0,00";
+    }
+}

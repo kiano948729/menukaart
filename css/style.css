@@ -576,7 +576,11 @@ hr {
     display: flex;
     justify-content: space-between; /* Zorg ervoor dat itemnaam en hoeveelheid gescheiden staan */
     align-items: center;
-    padding: 10px 0;
+    padding: 10px 10px;
+    border-radius: 10px;
+    margin-bottom: 3px;
+    background: rgb(77, 77, 77, 100); /* Lichtgrijze achtergrond */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Schaduw voor diepte */
 }
 
 #cart-items li:last-child {
