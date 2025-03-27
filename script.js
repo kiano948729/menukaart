@@ -1,12 +1,59 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const firstTabLink = document.querySelector(".menuLinks");
-    if (firstTabLink) {
-        firstTabLink.click();
+    const numberNavItems = document.querySelectorAll(".main-number-nav > div");
+    const sections = document.querySelectorAll(".main-number-nav-text > div");
+    let currentIndex = 0;
+
+    // Begin standaard met de eerste sectie zichtbaar en actief
+    function initializeSections() {
+        numberNavItems.forEach((item, index) => {
+            if (index === 0) {
+                item.classList.add("active"); // Maak de eerste navigatie actief
+            } else {
+                item.classList.remove("active"); // Verwijder actieve status voor anderen
+            }
+        });
+
+        sections.forEach((section, index) => {
+            section.style.display = index === 0 ? "block" : "none"; // Alleen de eerste sectie tonen
+        });
     }
 
-    updateCartDOM();
-    updateTotalPrice();
+    initializeSections();
+
+    // Functie om naar de volgende sectie te gaan
+    function showNextSection() {
+        // Verberg de huidige sectie en verwijder actieve status van het nummer
+        sections[currentIndex].style.display = "none";
+        numberNavItems[currentIndex].classList.remove("active");
+
+        // Ga naar de volgende sectie (of reset naar de eerste als aan het einde)
+        currentIndex = (currentIndex + 1) % sections.length;
+
+        // Toon de volgende sectie en activeer het bijbehorende nummer
+        sections[currentIndex].style.display = "block";
+        numberNavItems[currentIndex].classList.add("active");
+    }
+
+    // Wissel elke 4 seconden automatisch naar de volgende sectie
+    setInterval(showNextSection, 4000);
+
+    // Voeg klikfunctionaliteit toe om handmatig naar een bepaalde sectie te gaan
+    numberNavItems.forEach((item, index) => {
+        item.addEventListener("click", function () {
+            // Verberg huidige sectie en verwijder actieve status
+            sections[currentIndex].style.display = "none";
+            numberNavItems[currentIndex].classList.remove("active");
+
+            // Update de index naar de aangeklikte sectie
+            currentIndex = index;
+
+            // Toon de geklikte sectie en voeg actieve status toe
+            sections[currentIndex].style.display = "block";
+            numberNavItems[currentIndex].classList.add("active");
+        });
+    });
 });
+
 
 // Winkelwagen object om items bij te houden
 const cart = {};

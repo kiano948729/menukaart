@@ -159,12 +159,13 @@ nav {
     display: inline-block;
     font-weight: normal; /* Standaard gewicht normale nummers */
     opacity: 0.5; /* Maak inactieve nummers minder opvallend */
-    transition: opacity 0.3s ease, font-weight 0.3s ease; /* Zorg voor een vloeiende overgang */
+    transition: all 0.3s ease-in-out;
 }
 
 .main-number-nav > div.active {
     font-weight: bold; /* Maak het actieve nummer dikker */
     opacity: 1; /* Maak het actieve nummer volledig zichtbaar */
+    transition: all 0.3s ease-in-out;
 }
 .main-lower-nav{
     display: flex;
