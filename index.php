@@ -106,6 +106,30 @@ if (isset($_SESSION['user_id'])) {
                 </div>
             </div>
         </div>
+        <div class="lower-info">
+            <h1>DINE + DRINK</h1>
+            <h1>View All</h1>
+            <div>
+                <img src="img/indexImg/img.png" alt="gnf">
+                <p><i class="fa-thin fa-location-dot"></i>SOUTH EVELEIGH</p>
+                <h2>The Coffee Factory</h2>
+                <p>Savour wholesome food and great coffee amongst the working machinery of The Coffee Factory's working roastery.</p>
+            </div>
+            <div>
+                <img src="img/indexImg/img_1.png" alt="gnf">
+                <p><i class="fa-thin fa-location-dot"></i>ALEXANDRIA</p>
+                <h2>The Grounds Cafe</h2>
+                <p>Sit back and enjoy a hearty meal & sweet treats in one of Sydney's most iconic eateries.</p>
+
+            </div>
+            <div>
+                <img src="img/indexImg/img_2.png" alt="gnf">
+                <p><i class="fa-thin fa-location-dot"></i>ALEXANDRIA</p>
+                <h2>The Potting Shed</h2>
+                <p>Surround yourself with lush greenery at The Potting Shed and enjoy fresh seasonal dishes with a cheeky tipple or two.</p>
+            </div>
+
+        </div>
     </main>
 </div>
 </body>
