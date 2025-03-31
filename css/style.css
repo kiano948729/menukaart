@@ -202,6 +202,7 @@ nav {
     display: flex;
     width: 100%;
     height: fit-content;
+    border-radius: 10px;
 }
 
 .work-nav-links {
@@ -236,7 +237,7 @@ nav {
 }
 
 .menu-page {
-    width: 65%;
+    width: 100%;
     height: 950px;
     background: rgb(17, 19, 21);
 }
@@ -644,4 +645,52 @@ hr {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.reservation-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+}
+.available {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+.unavailable {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+.table-container {
+    display: flex;
+    flex-wrap: wrap; /* Zorgt dat rijen kunnen doorlopen naar nieuwe kolommen */
+    max-height: 500px; /* Stel een maximumhoogte in */
+    overflow: auto; /* Scroll toevoegen indien er meer inhoud is */
+}
+
+table {
+    border-collapse: collapse; /* Verwijder lege ruimte tussen cellen */
+    margin: 10px;
+    min-width: 200px;
+}
+
+td, th {
+    border: 1px solid #ddd; /* Geeft de tabel een rand */
+    padding: 8px;
+}
+
+th {
+    background-color: #f4f4f4; /* Achtergrondkleur voor koptekst */
+    position: sticky;
+    top: 0; /* Sticky maakt dat de header zichtbaar blijft bij scroll */
+}
+.hidden{
+    display: none;
+}
+#menu-table-checkout{
+    background-color: rgb(17, 19, 21);
+    border-radius: 30px;
 }

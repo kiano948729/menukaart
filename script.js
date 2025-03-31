@@ -232,3 +232,25 @@ function updateTotalPrice() {
             : "€0,00";
     }
 }
+function openTab(evt, tabName) {
+    const tabcontentWork = document.getElementsByClassName("tabcontentWork");
+    for (let i = 0; i < tabcontentWork.length; i++) {
+        tabcontentWork[i].style.display = "none"; // Verberg alle tabinhoud
+    }
+
+    const worklinks = document.getElementsByClassName("menuLinks");
+    for (let i = 0; i < worklinks.length; i++) {
+        worklinks[i].classList.remove("active"); // Verwijder de actieve klasse van alle links
+    }
+
+    document.getElementById(tabName).style.display = "block"; // Toon de gewenste tab
+    evt.currentTarget.classList.add("active"); // Voeg de actieve klasse toe aan de link die is aangeklikt
+
+    // Toon of verberg de 'menu-table-checkout' afhankelijk van de actieve tab
+    const checkoutDiv = document.getElementById('menu-table-checkout');
+    if (tabName === "third") {
+        checkoutDiv.classList.remove('hidden'); // Verwijder 'hidden' class als 'third' actief is
+    } else {
+        checkoutDiv.classList.add('hidden'); // Voeg 'hidden' class toe als andere tab actief is
+    }
+}
