@@ -36,7 +36,7 @@ if (isset($_SESSION['user_id'])) {
           rel="stylesheet">
 </head>
 
-<body>
+<body class="body-color">
 <div class="body-background">
     <header>
         <?php require_once("components/header.php") ?>
@@ -85,51 +85,52 @@ if (isset($_SESSION['user_id'])) {
                     </p>
                 </div>
             </div>
-        </div>
-        <div class="main-lower-nav">
-            <div class="main-lower-nav-slogan">
-                <h1>Welkom bij ons restaurant!</h1>
-            </div>
-            <div class="main-lower-nav-text">
-                <div>
-                    <h2>02</h2>
-                    <h1>Gallerie</h1>
-                    <p>Natuurlijke plaatsen </p>
-                </div>
-                <div>
-                    <h2>03</h2>
-                    <h1>Menu</h1>
-                    <p>Heerlijk eten</p>
-                </div>
-                <div>
-                    <img src="img/img_4.png" alt="gnf">
-                </div>
-            </div>
-        </div>
+        </div>>
         <div class="lower-info">
-            <h1>DINE + DRINK</h1>
-            <h1>View All</h1>
-            <div>
-                <img src="img/indexImg/img.png" alt="gnf">
-                <p><i class="fa-thin fa-location-dot"></i>SOUTH EVELEIGH</p>
-                <h2>The Coffee Factory</h2>
-                <p>Savour wholesome food and great coffee amongst the working machinery of The Coffee Factory's working roastery.</p>
+            <div class="lower-info-text">
+                <h1>DINE + DRINK</h1>
+                <h1>View All</h1>
             </div>
-            <div>
-                <img src="img/indexImg/img_1.png" alt="gnf">
-                <p><i class="fa-thin fa-location-dot"></i>ALEXANDRIA</p>
-                <h2>The Grounds Cafe</h2>
-                <p>Sit back and enjoy a hearty meal & sweet treats in one of Sydney's most iconic eateries.</p>
-
+            <div class="lower-info-img">
+                <div class="lower-info-img-1">
+                    <img src="img/indexImg/img.png" alt="gnf">
+                    <p>SOUTH EVELEIGH</p>
+                    <h2>The Coffee Factory</h2>
+                    <p>Savour wholesome food and great coffee amongst the working machinery of The Coffee Factory's
+                        working
+                        roastery.</p>
+                    <div class="lower-info-img-1-links">
+                        <a href="menu.php">book table</a>
+                        <a href="menu.php">view menu</a>
+                    </div>
+                </div>
+                <div class="lower-info-img-1">
+                    <img src="img/indexImg/img_1.png" alt="gnf">
+                    <p>ALEXANDRIA</p>
+                    <h2>The Grounds Cafe</h2>
+                    <p>Sit back and enjoy a hearty meal & sweet treats in one of Sydney's most iconic eateries.</p>
+                    <div class="lower-info-img-1-links">
+                        <a href="menu.php">book table</a>
+                        <a href="menu.php">view menu</a>
+                    </div>
+                </div>
+                <div class="lower-info-img-1">
+                    <img src="img/indexImg/img_2.png" alt="gnf">
+                    <p>ALEXANDRIA</p>
+                    <h2>The Potting Shed</h2>
+                    <p>Surround yourself with lush greenery at The Potting Shed and enjoy fresh seasonal dishes with a
+                        cheeky tipple or two.</p>
+                    <div class="lower-info-img-1-links">
+                        <a href="menu.php">book table</a>
+                        <a href="menu.php">view menu</a>
+                    </div>
+                </div>
             </div>
-            <div>
-                <img src="img/indexImg/img_2.png" alt="gnf">
-                <p><i class="fa-thin fa-location-dot"></i>ALEXANDRIA</p>
-                <h2>The Potting Shed</h2>
-                <p>Surround yourself with lush greenery at The Potting Shed and enjoy fresh seasonal dishes with a cheeky tipple or two.</p>
+            <div class="lower-info-img-hr">
+                <hr class="lower-info-hr">
             </div>
-
         </div>
+        <?php require_once("components/footer.php") ?>
     </main>
 </div>
 </body>

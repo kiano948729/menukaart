@@ -12,7 +12,12 @@ html, body {
     width: 100%;
     height: 100%;
     z-index: -1;
+    background-color: rgb(248, 248, 244);
 }
+.body-color{
+    background-color: rgb(248, 248, 244);
+}
+
 nav {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtiele schaduw voor diepte */
     padding: 10px 30px;
@@ -139,17 +144,20 @@ nav {
     justify-content: flex-start;
     color: #fff;
 }
-.main-number-nav-text div h2{
+
+.main-number-nav-text div h2 {
     color: #fff;
     font-size: 50px;
-    margin:0;
+    margin: 0;
 }
-.main-number-nav-text div h1{
+
+.main-number-nav-text div h1 {
     color: #fff;
     font-size: 100px;
     margin: 0;
 }
-.main-number-nav-text div p{
+
+.main-number-nav-text div p {
     color: #fff;
     font-size: 20px;
     margin: 0;
@@ -167,31 +175,42 @@ nav {
     opacity: 1; /* Maak het actieve nummer volledig zichtbaar */
     transition: all 0.3s ease-in-out;
 }
-.main-lower-nav{
+
+.main-lower-nav {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 100%;
 }
-.main-lower-nav-slogan{
+
+.main-lower-nav-slogan {
     width: 50%;
     color: #fff;
     display: flex;
     justify-content: center;
 }
-.main-lower-nav-text{
+
+.main-lower-nav-text {
     display: flex;
     flex-direction: row;
     width: 50%;
+    height: 283px;
 }
-.main-lower-nav-text div{
+
+.main-lower-nav-text div {
     background-color: #5f5959;
     opacity: 0.8;
     width: 33.33%;
     color: #fff;
 }
-.main-lower-nav-text div h2{
+
+.main-lower-nav-text div h2 {
     color: #fff;
+}
+
+.main-lower-nav-text-img img {
+    height: 283px;
+    width: 300px;
 }
 
 .tabcontentWork {
@@ -219,7 +238,7 @@ nav {
     /* Houdt de tekst links */
 }
 
-.work-nav-links  h1 {
+.work-nav-links h1 {
     color: #fff;
     display: flex;
     justify-content: center;
@@ -562,6 +581,7 @@ hr {
     color: #fff;
     height: 450px;
 }
+
 #cart-items.empty {
     display: flex;
     align-items: center;
@@ -631,39 +651,46 @@ hr {
     height: 10000px;
     z-index: -1;
 }
-.add-button{
+
+.add-button {
     color: #fff;
     font-size: larger;
 }
-.no-items-img{
+
+.no-items-img {
     height: 100px;
     width: 100px;
     margin-bottom: 40px;
 }
-.total-img-text-noit{
+
+.total-img-text-noit {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.reservation-container{
+
+.reservation-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     color: #fff;
 }
+
 .available {
     background-color: green;
     color: white;
     padding: 10px;
     text-align: center;
 }
+
 .unavailable {
     background-color: red;
     color: white;
     padding: 10px;
     text-align: center;
 }
+
 .table-container {
     display: flex;
     flex-wrap: wrap; /* Zorgt dat rijen kunnen doorlopen naar nieuwe kolommen */
@@ -687,10 +714,121 @@ th {
     position: sticky;
     top: 0; /* Sticky maakt dat de header zichtbaar blijft bij scroll */
 }
-.hidden{
+
+.hidden {
     display: none;
 }
-#menu-table-checkout{
+
+#menu-table-checkout {
     background-color: rgb(17, 19, 21);
     border-radius: 30px;
+}
+
+.lower-info-text {
+    color: black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.lower-info-img {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.lower-info-img-1 {
+    width: 435.33px;
+}
+
+.lower-info-img-1 img {
+    width: 435.33px;
+    height: 320px;
+}
+
+.lower-info-img-1-links {
+    display: flex;
+    flex-direction: row;
+}
+
+.lower-info-img-1-links a {
+    background-color: #205C40;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.lower-info-img-1 p img {
+    height: 48px;
+    width: 20px;
+}
+.lower-info-img-1 p img:hover{
+    height: 60px; /* Groter formaat op hover */
+    width: 25px;
+    transition: 0.3s;
+}
+.lower-info-img-hr{
+    display: flex;
+    justify-content: center;
+}
+.lower-info-hr {
+    width: 80%;
+    margin: 90px 0px;
+    border: none; /* Verwijderd onnodige standaardranden */
+    border-top: 1px solid #ccc; /* Voegt een horizontale lijn toe */
+    height: 0; /* Hoogte op 0 om verticaal gedrag te vermijden */
+}
+.lower-info{
+    margin-top: 300px;
+}
+.footer{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+.footer-links {
+    display: flex;
+    flex-direction: row;
+    gap: 10px
+}
+.footer-links div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+.h1-footer {
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+.h1-footer a{
+    color: gray;
+    text-decoration: none;
+}
+.footer-bottom{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.hr-lower-footer{
+    border: none; /* Verwijderd onnodige standaardranden */
+    border-top: 1px solid #ccc; /* Voegt een horizontale lijn toe */
+    height: 0; /* Hoogte op 0 om verticaal gedrag te vermijden */
+    width: 80%; /* Zorgt ervoor dat de lijn horizontaal is */
+    margin: 0 auto; /* Centrerend gedrag */
+}
+.footer-bottom img{
+    height: 70px;
+    width: 200px;
+    margin: 0 40px;
+}
+.footer-below{
+    display: flex;
+    flex-direction: row;
+}
+.h1-footer1{
+    color: gray;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
 }
