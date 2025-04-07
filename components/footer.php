@@ -10,16 +10,18 @@
             <h1 class="h1-footer"><a href="">wholesale</a></h1>
         </div>
     </div>
-    <div>
+    <div class="footer-contact">
         <h1 class="h1-footer">
             newsletter
         </h1>
         <p>Receive The Grounds latest news directly to you.</p>
-        <input type="text" placeholder="Enter your email address">
-        <button>subscribe</button>
-        <a href="">insta</a>
-        <a href="">facebook</a>
-        <a href="">yt</a>
+        <div class="input-wrapper">
+            <input type="text" placeholder="Enter your email address">
+            <button type="button">→</button>
+        </div>
+        <a href=""><img src="../img/indexImg/insta.png" alt=""></a>
+        <a href=""><img src="../img/indexImg/facebook.png" alt=""></a>
+        <a href=""><img src="../img/indexImg/yt.png" alt=""></a>
     </div>
 </div>
 <div class="footer-bottom">
@@ -27,7 +29,7 @@
     <img src="../img/gif/footerimg.png" alt="">
     <hr class="hr-lower-footer">
 </div>
-<div class="footer">
+<div class="footer-down">
     <div class="footer-below">
         <h1 class="h1-footer1"><a href="">book</a></h1>
         <h1 class="h1-footer1"><a href="">privacy</a></h1>
@@ -35,6 +37,6 @@
     </div>
     <div class="footer-below">
         <h1 class="h1-footer1">© 2025 The Grounds</h1>
-        <h1 class="h1-footer1">Wesbite By <span>KIANO WEB</span></h1>
+        <h1 class="h1-footer1">Wesbite By <span class="my-name">KIANO WEB</span></h1>
     </div>
 </div>

@@ -254,3 +254,31 @@ function openTab(evt, tabName) {
         checkoutDiv.classList.add('hidden'); // Voeg 'hidden' class toe als andere tab actief is
     }
 }
+document.addEventListener("DOMContentLoaded", function () {
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchInput");
+    const searchResults = document.getElementById("searchResults");
+
+    // Voeg event listener toe voor het zoekformulier
+    searchForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Voorkom standaard formulierverzending
+
+        const query = searchInput.value.trim();
+
+        if (!query) {
+            searchResults.innerHTML = "<p>Voer een zoekterm in.</p>";
+            return;
+        }
+
+        // Verstuur de zoekopdracht naar de server en vraag resultaten op
+        fetch(`search.php?query=${encodeURIComponent(query)}`)
+            .then(response => response.text()) // Verwacht een HTML-respons
+            .then(html => {
+                searchResults.innerHTML = html; // Plaats de HTML direct in de container
+            })
+            .catch(error => {
+                console.error("Fout bij het ophalen van zoekresultaten:", error);
+                searchResults.innerHTML = "<p>Er is een fout opgetreden. Probeer het opnieuw.</p>";
+            });
+    });
+});

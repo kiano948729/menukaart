@@ -4,11 +4,17 @@
         <div class="menu-link">
             <div class="menu-align">
                 <button class="menuLinks" onclick="openTab(event, 'main')">reservation</button>
-                <button class="menuLinks" onclick="openTab(event, 'second')">table service</button>
+                <button class="menuLinks" onclick="openTab(event, 'second')">gallery</button>
                 <button class="menuLinks" onclick="openTab(event, 'third')">menu</button>
-                <button class="menuLinks" onclick="openTab(event, 'fourth')">delivery</button>
-                <button class="menuLinks" onclick="openTab(event, 'fifth')">accounting</button>
+                <div id="dropdownMenu" class="hidden">
+                    <ul>
+                        <li><a href="../backend/search.php">Search Page</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </div>
+    <div>
+
     </div>
 </aside>

@@ -33,13 +33,13 @@ include 'backend/databaseConnect.php';
     <div class="menu-page">
         <main>
             <div class="search-bar">
-                <form action="search.php" method="GET" class="search-container">
-                    <input type="text" name="query"
-                           placeholder="Search"><?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin'): ?>
+                <form action="" method="GET" class="search-container">
+                    <input type="text" name="query" id="searchInput" placeholder="Zoek hier..." required>
+                    <button type="submit">Zoek</button>
+                    <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin'): ?>
                         <button type="button" onclick="window.location.href='backend/addItem.php'">Beheerderspaneel
                         </button>
                     <?php endif; ?>
-
                 </form>
             </div>
             <div class="menu-content">
@@ -81,14 +81,11 @@ include 'backend/databaseConnect.php';
 
                     </div>
                 </div>
-                <div id="second" class="tabcontentWork">
-                    <p>sdfsfsfgsd</p>
-                </div>
                 <div id="third" class="tabcontentWork">
                     <div class="menu-height">
                         <div class="menu-main-container">
                             <div class="catogories-div">
-                                <div class="breakfast-main" onclick="openCategory('breakfast')">
+                                <div class="breakfast-main" id="category-1" onclick="openCategory('breakfast')">
                                     <div class="items-catogorie-align-boxI">
                                         <i class="fa-solid fa-mug-hot" style="font-size: 40px;"></i>
                                         <h1>Breakfast</h1>
@@ -200,8 +197,8 @@ include 'backend/databaseConnect.php';
                                                     <?php foreach ($category['items'] as $item): ?>
                                                         <div class="item">
                                                             <div class="item-details">
-                                                                <p>Product:
-                                                                    <strong><?php echo $item['name']; ?></strong></p>
+                                                                <p>Product:<strong><?php echo $item['name']; ?></strong>
+                                                                </p>
                                                                 <p>Prijs:
                                                                     €<?php echo number_format($item['price'], 2); ?></p>
                                                                 <p>Stock: <span class="item-stock"
@@ -515,10 +512,8 @@ include 'backend/databaseConnect.php';
                                     <?php endforeach; ?>
                                 </div>
                             </div>
-                            <!-- Einde catogorie items van Drinks -->
                         </div>
                     </div>
-                </div>
                 <div id="fourth" class="tabcontentWork">
                     <p>sdfsfasdasdfasdfadsfsfgsd</p>
                 </div>

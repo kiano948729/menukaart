@@ -10,6 +10,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <div>
             <a href="../index.php">Home</a>
             <a href="../menu.php">Menu</a>
+            <a href="../about.php">About us</a>
         </div>
         <div>
             <?php if ($current_user): ?>
