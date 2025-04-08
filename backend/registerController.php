@@ -1,25 +1,21 @@
 <?php
+require_once 'databaseConnect.php';
 global $conn;
-require_once 'conn.php';
 
-// Verkrijg input
-$username = $_POST['username'];
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = $_POST['id'];
+    $date = $_POST['date'];
+    $time = $_POST['time'];
+    $guests = $_POST['guests'];
 
-// Controleer of gebruikersnaam al bestaat
-$query = "SELECT * FROM users WHERE username = :username";
-$statement = $conn->prepare($query);
-$statement->execute([':username' => $username]);
+    $query = "UPDATE reservations SET date = :date, time = :time, guests = :guests WHERE id = :id";
+    $stmt = $conn->prepare($query);
 
-if ($statement->rowCount() > 0) {
-    die("Gebruikersnaam bestaat al!");
+    if ($stmt->execute([':date' => $date, ':time' => $time, ':guests' => $guests, ':id' => $id])) {
+        $success = "Reservering succesvol bijgewerkt!";
+    } else {
+        $success = "Er is iets fout gegaan!";
+    }
+    header("Location: manageReservations.php");
+    exit();
 }
-
-// Voeg gebruiker toe aan database
-$query = "INSERT INTO users (username, password) VALUES (:username, :password)";
-$statement = $conn->prepare($query);
-$statement->execute([':username' => $username, ':password' => $password]);
-
-header("Location: ../menu.php");
-exit;
-?>

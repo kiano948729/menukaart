@@ -7,6 +7,11 @@ global $conn;
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     die("Toegang geweigerd! Alleen admins mogen items verwijderen.");
 }
+// Haal reserveringen op
+$query = "SELECT * FROM reservations";
+$stmt = $conn->prepare($query);
+$stmt->execute();
+$reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Haal alle items op voor weergave
 $query = "SELECT id, category_id, name, price, stock FROM items";
@@ -91,5 +96,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_item_id'])) {
         <p>Geen items gevonden.</p>
     <?php endif; ?>
 </div>
+<div class="container">
+    <h1>Reserveringen Beheren</h1>
+    <a href="../menu.php">Terug naar Menu</a>
+
+    <!-- Success/gemeldingen -->
+    <?php if (isset($success)): ?>
+        <p style="color: green;"><?= htmlspecialchars($success) ?></p>
+    <?php endif; ?>
+
+    <?php if (!empty($reservations)): ?>
+        <table>
+            <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Email</th>
+                <th>Datum</th>
+                <th>Tijd</th>
+                <th>Aantal Gasten</th>
+                <th>Aangemaakt op</th>
+                <th>Acties</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($reservations as $reservation): ?>
+                <tr>
+                    <td><?= htmlspecialchars($reservation['user_id']) ?></td>
+                    <td><?= htmlspecialchars($reservation['email']) ?></td>
+                    <td><?= htmlspecialchars($reservation['date']) ?></td>
+                    <td><?= htmlspecialchars($reservation['time']) ?></td>
+                    <td><?= intval($reservation['guests']) ?></td>
+                    <td><?= htmlspecialchars($reservation['created_at']) ?></td>
+                    <td>
+                        <!-- Accepteren -->
+                        <form method="POST" action="acceptReservation.php" style="display:inline-block;">
+                            <input type="hidden" name="reservation_id" value="<?= $reservation['id'] ?>">
+                            <button type="submit">Accepteer</button>
+                        </form>
+
+                        <!-- Aanpassen -->
+                        <form method="GET" action="editReservation.php" style="display:inline-block;">
+                            <input type="hidden" name="id" value="<?= $reservation['id'] ?>">
+                            <button type="submit">Aanpassen</button>
+                        </form>
+
+                        <!-- Verwijderen -->
+                        <form method="POST" action="deleteReservation.php" style="display:inline-block;" onsubmit="return confirm('Weet je zeker dat je deze reservering wilt verwijderen?');">
+                            <input type="hidden" name="delete_reservation_id" value="<?= $reservation['id'] ?>">
+                            <button type="submit" style="color: red;">Verwijder</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p>Geen reserveringen gevonden.</p>
+    <?php endif; ?>
+</div>
+
 </body>
 </html>
