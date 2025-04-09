@@ -25,7 +25,7 @@ include 'backend/databaseConnect.php';
           rel="stylesheet">
 </head>
 
-<body>
+<body class="menu-body">
 <div class="menu-main-div">
     <div class="menu-nav">
         <?php require_once("components/headerSecond.php") ?>
@@ -41,6 +41,46 @@ include 'backend/databaseConnect.php';
                         </button>
                     <?php endif; ?>
                 </form>
+                <?php
+                if (isset($_GET['query'])) {
+                    // Zoekwaarde ophalen en beveiligen
+                    $searchQuery = htmlspecialchars($_GET['query']);
+                    echo "<div class='result-item'>";
+
+                    echo "<p>Resultaten voor: <strong>" . $searchQuery . "</strong></p>";
+
+                    // Verbinding met de database
+                    try {
+                        $query = "SELECT name, price, stock FROM items WHERE name LIKE :search";
+                        $stmt = $conn->prepare($query);
+                        $stmt->bindValue(":search", "%" . $searchQuery . "%", PDO::PARAM_STR);
+                        $stmt->execute();
+
+                        // Resultaten ophalen
+                        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        if ($results) {
+                            foreach ($results as $result) {
+                                echo "<div class='item-controls'>";
+                                $itemName = htmlspecialchars($result['name']);
+                                $itemPrice = htmlspecialchars($result['price']);
+                                $itemStock = htmlspecialchars($result['stock']);
+                                echo "<button class='decrease-btn' data-name='" . $itemName . "'>-</button>";
+                                echo "<span class='item-quantity' data-name='" . $itemName . "'>0</span>";
+                                echo "<button class='increase-btn' data-name='" . $itemName . "' data-price='" . $itemPrice . "'>+</button>";
+                                echo "<p>Product: <strong>" . $itemStock . "</strong></p>";
+                                echo "</div>";
+                                echo "</div>";
+                            }
+                        } else {
+                            echo "<p>Geen resultaten gevonden.</p>";
+                        }
+                    } catch (PDOException $e) {
+                        echo "<p>Fout bij het ophalen van de gegevens: " . $e->getMessage() . "</p>";
+                    }
+                }
+                ?>
+
             </div>
             <div class="menu-content">
                 <div id="main" class="tabcontentWork">
@@ -187,7 +227,7 @@ include 'backend/databaseConnect.php';
                         <div class="catogories-to-items">
                             <!-- hier moet de items van de catorgie komen -->
                             <div id="breakfastItems" class="item-section" style="display: none;">
-                                <div class="items-grid">
+                                <div class="items-grid1">
                                     <?php foreach ($categories as $category): ?>
                                         <?php if ($category['name'] === "Breakfast"): ?>
                                             <div class="category-section" id="alcoholItems">
@@ -227,7 +267,7 @@ include 'backend/databaseConnect.php';
                                 </div>
                             </div>
                             <div id="soupsItems" class="item-section" style="display: none;">
-                                <div class="items-grid">
+                                <div class="items-grid1">
                                     <?php foreach ($categories as $category): ?>
                                         <?php if ($category['name'] === "Soups"): ?>
                                             <div class="category-section" id="alcoholItems">
@@ -267,7 +307,7 @@ include 'backend/databaseConnect.php';
                                 </div>
                             </div>
                             <div id="pastaItems" class="item-section" style="display: none;">
-                                <div class="items-grid">
+                                <div class="items-grid1">
                                     <?php foreach ($categories as $category): ?>
                                         <?php if ($category['name'] === "Pasta"): ?>
                                             <div class="category-section" id="alcoholItems">
@@ -308,7 +348,7 @@ include 'backend/databaseConnect.php';
                                 </div>
                             </div>
                             <div id="sushiItems" class="item-section" style="display: none;">
-                                <div class="items-grid">
+                                <div class="items-grid1">
                                     <?php foreach ($categories as $category): ?>
                                         <?php if ($category['name'] === "Sushi"): ?>
                                             <div class="category-section" id="alcoholItems">
@@ -351,7 +391,7 @@ include 'backend/databaseConnect.php';
                             <!-- Einde catogorie items van Alcohol -->
 
                             <div id="main courseItems" class="item-section" style="display: none;">
-                                <div class="items-grid">
+                                <div class="items-grid1">
                                     <?php foreach ($categories as $category): ?>
                                         <?php if ($category['name'] === "Main Course"): ?>
                                             <div class="category-section" id="alcoholItems">
@@ -391,7 +431,7 @@ include 'backend/databaseConnect.php';
                                 </div>
                             </div>
                             <div id="dessertsItems" class="item-section" style="display: none;">
-                                <div class="items-grid">
+                                <div class="items-grid1">
                                     <?php foreach ($categories as $category): ?>
                                         <?php if ($category['name'] === "Desserts"): ?>
                                             <div class="category-section" id="alcoholItems">
@@ -431,7 +471,7 @@ include 'backend/databaseConnect.php';
                                 </div>
                             </div>
                             <div id="drinksItems" class="item-section" style="display: none;">
-                                <div class="items-grid">
+                                <div class="items-grid1">
                                     <?php foreach ($categories as $category): ?>
                                         <?php if ($category['name'] === "Drinks"): ?>
                                             <div class="category-section" id="alcoholItems">
@@ -472,7 +512,7 @@ include 'backend/databaseConnect.php';
                                 </div>
                             </div>
                             <div id="alcoholItems" class="item-section" style="display: none;">
-                                <div class="items-grid">
+                                <div class="items-grid1">
                                     <?php foreach ($categories as $category): ?>
                                         <?php if ($category['name'] === "Alcohol"): ?>
                                             <div class="category-section" id="alcoholItems">
@@ -514,13 +554,13 @@ include 'backend/databaseConnect.php';
                             </div>
                         </div>
                     </div>
-                <div id="fourth" class="tabcontentWork">
-                    <p>sdfsfasdasdfasdfadsfsfgsd</p>
+                    <div id="fourth" class="tabcontentWork">
+                        <p>sdfsfasdasdfasdfadsfsfgsd</p>
+                    </div>
+                    <div id="fifth" class="tabcontentWork">
+                        <p>sdfsfsfgsd</p>
+                    </div>
                 </div>
-                <div id="fifth" class="tabcontentWork">
-                    <p>sdfsfsfgsd</p>
-                </div>
-            </div>
         </main>
     </div>
 

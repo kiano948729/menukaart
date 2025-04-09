@@ -11,6 +11,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <a href="../index.php">Home</a>
             <a href="../menu.php">Menu</a>
             <a href="../about.php">About us</a>
+            <a href="../contact.php">Contact</a>
+
         </div>
         <div>
             <?php if ($current_user): ?>
