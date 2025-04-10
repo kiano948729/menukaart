@@ -134,12 +134,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_item_id'])) {
                             <button type="submit">Accepteer</button>
                         </form>
 
-                        <!-- Aanpassen -->
-                        <form method="GET" action="editReservation.php" style="display:inline-block;">
-                            <input type="hidden" name="id" value="<?= $reservation['id'] ?>">
-                            <button type="submit">Aanpassen</button>
-                        </form>
-
                         <!-- Verwijderen -->
                         <form method="POST" action="deleteReservation.php" style="display:inline-block;" onsubmit="return confirm('Weet je zeker dat je deze reservering wilt verwijderen?');">
                             <input type="hidden" name="delete_reservation_id" value="<?= $reservation['id'] ?>">

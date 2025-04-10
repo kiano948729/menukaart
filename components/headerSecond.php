@@ -4,7 +4,6 @@
         <div class="menu-link">
             <div class="menu-align">
                 <button class="menuLinks" onclick="openTab(event, 'main')">reservation</button>
-                <button class="menuLinks" onclick="openTab(event, 'second')">gallery</button>
                 <button class="menuLinks" onclick="openTab(event, 'third')">menu</button>
                 <div id="dropdownMenu" class="hidden">
                     <ul>

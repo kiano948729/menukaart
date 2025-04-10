@@ -282,8 +282,8 @@ include 'backend/databaseConnect.php';
                                                                 <p>Prijs:
                                                                     €<?php echo number_format($item['price'], 2); ?></p>
                                                                 <p>Stock: <span class="item-stock"
-                                                                                data-name="<?php echo $item['name']; ?>">
-                                                                <?php echo $item['stock']; ?></span></p>
+                                                                                data-name="<?php echo $item['name']; ?>"><?php echo $item['stock']; ?></span>
+                                                                </p>
                                                             </div>
                                                             <!-- Controls voor hoeveelheid -->
                                                             <div class="item-controls">
@@ -588,15 +588,21 @@ include 'backend/databaseConnect.php';
                     <div class="item-payment">
                         <h2 class="h2-item-check">Payement Method, prijs: <span id="total-price">€0.00</span></h2>
                         <div class="payement-buttons">
-                            <div class="payement-button">
-                                <i class="fa-brands fa-cc-apple-pay" style="color: #7e7f81;"></i>
-                            </div>
-                            <div class="payement-button">
-                                <i class="fa-solid fa-credit-card" style="color:#7e7f81;"></i>
-                            </div>
-                            <div class="payement-button">
-                                <i class="fa-solid fa-credit-card" style="color:#7e7f81;"></i>
-                            </div>
+                            <button class="payment-click" onclick="ifClicked(this)">
+                                <div class="payement-button">
+                                    <i class="fa-brands fa-cc-apple-pay" style="color: #7e7f81;"></i>
+                                </div>
+                            </button>
+                            <button class="payment-click" onclick="ifClicked(this)">
+                                <div class="payement-button">
+                                    <i class="fa-solid fa-credit-card" style="color:#7e7f81;"></i>
+                                </div>
+                            </button>
+                            <button class="payment-click" onclick="ifClicked(this)">
+                                <div class="payement-button">
+                                    <i class="fa-solid fa-credit-card" style="color:#7e7f81;"></i>
+                                </div>
+                            </button>
                         </div>
                         <div class="payement-buttons-text">
                             <div class="payement-text">

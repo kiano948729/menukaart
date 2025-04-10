@@ -3,12 +3,14 @@ html, body {
     padding: 0; /* Verwijder standaard padding */
     height: 100%; /* Zorg dat html en body de volledige hoogte van de viewport innemen */
 }
-.menu-body{
+
+.menu-body {
     margin: 0;
     padding: 0;
     height: 100%;
     overflow: hidden;
 }
+
 /* Algemene stijl voor de scrollbalk */
 ::-webkit-scrollbar {
     width: 10px; /* Breedte van de verticale scrollbalk */
@@ -46,7 +48,89 @@ html, body {
 .body-color {
     background-color: rgb(248, 248, 244);
 }
+nav {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtiele schaduw voor diepte */
+    padding: 10px 30px;
+    position: sticky; /* Blijft bovenaan plakken bij scrollen */
+    top: 0;
+    z-index: 1000;
+}
 
+.index-nav1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+
+.index-nav1 div a:first-child {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    padding-right: 30px;
+    transition: all 0.3s ease;
+}
+
+.index-nav1 div a:first-child:hover {
+    color: #bde4a5;
+}
+
+
+.index-nav1 div a {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    margin: 0 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.index-nav1 div a:hover {
+    color: #bde4a5;
+}
+
+.index-nav1 div a:hover::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transition: width 0.3s ease;
+}
+
+
+.index-nav1 div span,
+.index-nav1 div a {
+    color: black;
+    font-weight: normal;
+}
+
+.index-nav1 div span {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+/* Inlog-/uitlog-styling rechts */
+.index-nav1 div:last-child a {
+    background: #f5f5f5;
+    color: black;
+    font-size: 16px;
+    padding: 5px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.index-nav1 div:last-child a:hover {
+    background: #e1e1e1;
+    color: #2b431a;
+}
 nav {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtiele schaduw voor diepte */
     padding: 10px 30px;
@@ -408,6 +492,9 @@ h2 {
     height: 100px;
     display: flex;
     align-items: center;
+    margin: 0 0 0 90px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtiele schaduw voor diepte */
+
 }
 
 .search-container {
@@ -539,7 +626,8 @@ hr {
     grid-row-gap: 0;
     row-gap: 30px;
 }
-.items-grid1{
+
+.items-grid1 {
     margin-left: 90px;
 }
 
@@ -940,6 +1028,7 @@ th {
 .my-name {
     color: black;
 }
+
 /* Container voor zoekresultaten */
 .search-results-container {
     display: grid;
@@ -987,7 +1076,7 @@ th {
 }
 
 .item-controls button:hover {
-    background-color: #0056b3;
+    background-color: #45a049;
 }
 
 /* Styling van de hoeveelheid en voorraad */
@@ -1012,6 +1101,7 @@ th {
         padding: 5px 8px;
     }
 }
+
 /* Hero sectie styling */
 .about-hero {
     background-image: url('../img/aboutus.png'); /* Vervang de afbeelding met een passende */
@@ -1128,15 +1218,19 @@ th {
         align-items: center;
     }
 }
-.header-about{
+
+.header-about {
     color: black;
 }
+
 .about-background {
     background-color: rgb(248, 248, 244);
 }
+
 .contact-background {
     background-color: rgb(248, 248, 244);
 }
+
 .contact-main-div1 {
     display: flex;
     justify-content: center;
@@ -1172,15 +1266,92 @@ th {
     text-align: center;
     margin-bottom: 30px;
 }
-.contact-background-image{
+
+.contact-background-image {
     background-image: url('../img/indexImg/contact.png');
     width: 100%;
     height: 500px;
 }
-.contact-background-image h1{
+
+.contact-background-image h1 {
     color: white;
     font-size: 50px;
     display: flex;
     justify-content: center;
 
+}
+.login-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.login-align{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 0 200px 0;
+}
+.login-body{
+    background-color: rgb(248, 248, 244);
+}
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form label {
+    margin-bottom: 8px;
+    color: #666;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login-form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-form button:hover {
+    background-color: #45a049;
+}
+.payment-click{
+    background-color: rgb(63, 66, 67);
+    border: none;
+    border-radius: 10px;
+
+}
+.payment-click:hover{
+    border: #45a049 1px solid;
+}
+.payment-click.active {
+    border: 1px solid #45a049;
 }

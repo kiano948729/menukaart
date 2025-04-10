@@ -16,6 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $success = "Er is iets fout gegaan!";
     }
-    header("Location: manageReservations.php");
+    header("Location: ../menu.php");
     exit();
 }

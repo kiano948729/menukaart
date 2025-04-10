@@ -89,7 +89,7 @@ if (isset($_SESSION['user_id'])) {
         <div class="lower-info">
             <div class="lower-info-text">
                 <h1>DINE + DRINK</h1>
-                <h1>View All</h1>
+                <a href="menu.php"><h1>View All</h1></a>
             </div>
             <div class="lower-info-img">
                 <div class="lower-info-img-1">

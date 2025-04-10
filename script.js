@@ -193,7 +193,11 @@ function addRemoveButtonListeners() {
 function updateCartDOM() {
     const cartItemsList = document.getElementById("cart-items");
     cartItemsList.innerHTML = ""; // Leeg de huidige lijst
+    const itemCount = Object.keys(cart).length;
 
+    if (itemCount > 8) {
+        alert("Je kan maximaal 8 verschillende items toevoegen aan je winkelmandje.");
+    }
     for (const itemName in cart) {
         const item = cart[itemName];
         const li = document.createElement("li");
@@ -205,7 +209,7 @@ function updateCartDOM() {
         cartItemsList.appendChild(li);
     }
 
-    addRemoveButtonListeners(); // Voeg verwijder knop-functionaliteit toe
+    addRemoveButtonListeners();
 }
 
 // Bereken de totale prijs van de winkelwagen
@@ -253,5 +257,12 @@ function openTab(evt, tabName) {
     } else {
         checkoutDiv.classList.add('hidden'); // Voeg 'hidden' class toe als andere tab actief is
     }
+}
+function ifClicked(element) {
+    const buttons = document.querySelectorAll('.payment-click');
+
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    element.classList.add('active');
 }
 

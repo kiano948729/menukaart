@@ -5,6 +5,7 @@ global $conn;
 
 // Controleer of de gebruiker ingelogd is en admin is
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    ?><a href="../menu.php">Terug naar menu</a><?php
     die("Toegang geweigerd! Alleen admins mogen items bewerken.");
 }
 

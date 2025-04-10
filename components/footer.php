@@ -1,7 +1,7 @@
 <div class="footer">
     <div class="footer-links">
         <div>
-            <h1 class="h1-footer"><a href="">about us</a></h1>
+            <h1 class="h1-footer"><a href="../about.php">about us</a></h1>
             <h1 class="h1-footer"><a href="">contact us</a></h1>
             <h1 class="h1-footer"><a href="">careers</a></h1>
         </div>
@@ -16,8 +16,10 @@
         </h1>
         <p>Receive The Grounds latest news directly to you.</p>
         <div class="input-wrapper">
-            <input type="text" placeholder="Enter your email address">
-            <button type="button">→</button>
+            <form action="../backend/submit_contact.php" method="POST">
+                <input type="text" placeholder="Enter your email address">
+                <button type="submit" value="Verstuur" class="submit-btn">→</button>
+            </form>
         </div>
         <a href=""><img src="../img/indexImg/insta.png" alt=""></a>
         <a href=""><img src="../img/indexImg/facebook.png" alt=""></a>
