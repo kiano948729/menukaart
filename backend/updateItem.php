@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Bijwerken</button>
     </form>
 
-    <a href="admin.php">Terug naar lijst</a>
+    <a href="addItem.php">Terug naar lijst</a>
 </div>
 </body>
 </html>

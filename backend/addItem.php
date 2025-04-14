@@ -4,9 +4,9 @@ require_once 'databaseConnect.php';
 global $conn;
 
 // Controleer of de gebruiker ingelogd is en admin is
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    die("Toegang geweigerd! Alleen admins mogen items verwijderen.");
-}
+//if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+//    die("Toegang geweigerd! Alleen admins mogen items verwijderen.");
+//}
 // Haal reserveringen op
 $query = "SELECT * FROM reservations";
 $stmt = $conn->prepare($query);
@@ -33,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_item_id'])) {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -41,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_item_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Items Beheren</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../delete-button.js" type="module" defer></script>
 </head>
 <body>
 <div class="container">
@@ -77,10 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_item_id'])) {
                     <td><?= intval($item['stock']) ?></td>
                     <td><?= htmlspecialchars($item['category_id']) ?></td>
                     <td>
-                        <form method="POST" action="deleteItem.php" onsubmit="return confirm('Weet je zeker dat je dit item wilt verwijderen?');">
-                            <input type="hidden" name="delete_item_id" value="<?= $item['id'] ?>">
-                            <button type="submit" style="color: red;">Verwijder</button>
-                        </form>
+                        <delete-button item-id="<?= $item['id'] ?>" action="deleteItem.php"></delete-button>
                     </td>
                     <td>
                         <form method="GET" action="updateItem.php">
@@ -128,12 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_item_id'])) {
                     <td><?= intval($reservation['guests']) ?></td>
                     <td><?= htmlspecialchars($reservation['created_at']) ?></td>
                     <td>
-                        <!-- Accepteren -->
-                        <form method="POST" action="acceptReservation.php" style="display:inline-block;">
-                            <input type="hidden" name="reservation_id" value="<?= $reservation['id'] ?>">
-                            <button type="submit">Accepteer</button>
-                        </form>
-
                         <!-- Verwijderen -->
                         <form method="POST" action="deleteReservation.php" style="display:inline-block;" onsubmit="return confirm('Weet je zeker dat je deze reservering wilt verwijderen?');">
                             <input type="hidden" name="delete_reservation_id" value="<?= $reservation['id'] ?>">

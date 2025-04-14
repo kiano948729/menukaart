@@ -59,20 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
 const cart = {};
 
 // Functie om tabs te beheren
-function openTab(evt, tabName) {
-    const tabcontentWork = document.getElementsByClassName("tabcontentWork");
-    for (let i = 0; i < tabcontentWork.length; i++) {
-        tabcontentWork[i].style.display = "none";
-    }
 
-    const worklinks = document.getElementsByClassName("menuLinks");
-    for (let i = 0; i < worklinks.length; i++) {
-        worklinks[i].classList.remove("active");
-    }
-
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.classList.add("active");
-}
 
 // Functie om categorieën te tonen of te verbergen
 function openCategory(categoryName) {

@@ -13,6 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_reservation_id
     } else {
         $success = "Er is iets fout gegaan!";
     }
-    header("Location: manageReservations.php");
+    header("Location: addItem.php");
     exit();
 }

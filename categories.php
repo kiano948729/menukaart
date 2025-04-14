@@ -75,4 +75,5 @@ foreach ($categories as &$category) {
     $category['item_count'] = count($category['items']);
 }
 unset($category); // Breek referentie na de foreach-loop
+;
 ?>
