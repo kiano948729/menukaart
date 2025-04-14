@@ -21,7 +21,7 @@
 <main>
     <div class="login-align">
         <div class="login-container">
-            <h2>Inloggen</h2>
+            <h2>registreren</h2>
             <form action="registerController.php" method="POST" class="login-form">
                 <label for="username">Gebruikersnaam:</label>
                 <input type="text" id="username" name="username" required>
