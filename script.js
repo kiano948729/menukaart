@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const numberNavItems = document.querySelectorAll(".main-number-nav > div");
     const sections = document.querySelectorAll(".main-number-nav-text > div");
+    openTab(null, 'third');
     let currentIndex = 0;
 
     // Begin standaard met de eerste sectie zichtbaar en actief
@@ -29,15 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
         // Ga naar de volgende sectie (of reset naar de eerste als aan het einde)
         currentIndex = (currentIndex + 1) % sections.length;
 
-        // Toon de volgende sectie en activeer het bijbehorende nummer
         sections[currentIndex].style.display = "block";
         numberNavItems[currentIndex].classList.add("active");
     }
 
-    // Wissel elke 4 seconden automatisch naar de volgende sectie
     setInterval(showNextSection, 4000);
 
-    // Voeg klikfunctionaliteit toe om handmatig naar een bepaalde sectie te gaan
     numberNavItems.forEach((item, index) => {
         item.addEventListener("click", function () {
             // Verberg huidige sectie en verwijder actieve status
@@ -225,26 +223,43 @@ function updateTotalPrice() {
 }
 function openTab(evt, tabName) {
     const tabcontentWork = document.getElementsByClassName("tabcontentWork");
-    for (let i = 0; i < tabcontentWork.length; i++) {
-        tabcontentWork[i].style.display = "none"; // Verberg alle tabinhoud
-    }
-
     const worklinks = document.getElementsByClassName("menuLinks");
-    for (let i = 0; i < worklinks.length; i++) {
-        worklinks[i].classList.remove("active"); // Verwijder de actieve klasse van alle links
+
+    // Verberg alle tab-contents
+    Array.from(tabcontentWork).forEach(tab => {
+        tab.style.display = "none";
+    });
+
+    // Verwijder "active" class van alle knoppen
+    Array.from(worklinks).forEach(link => {
+        link.classList.remove("active");
+    });
+
+    // Toon het geselecteerde tabblad als het bestaat
+    const targetTab = document.getElementById(tabName);
+    if (targetTab) {
+        targetTab.style.display = "block";
+    } else {
+        console.warn(`Tab "${tabName}" bestaat niet.`);
+        return;
     }
 
-    document.getElementById(tabName).style.display = "block"; // Toon de gewenste tab
-    evt.currentTarget.classList.add("active"); // Voeg de actieve klasse toe aan de link die is aangeklikt
+    // Voeg "active" class toe aan de aangeklikte knop (indien evt bestaat)
+    if (evt && evt.currentTarget) {
+        evt.currentTarget.classList.add("active");
+    }
 
-    // Toon of verberg de 'menu-table-checkout' afhankelijk van de actieve tab
-    const checkoutDiv = document.getElementById('menu-table-checkout');
-    if (tabName === "third") {
-        checkoutDiv.classList.remove('hidden'); // Verwijder 'hidden' class als 'third' actief is
-    } else {
-        checkoutDiv.classList.add('hidden'); // Voeg 'hidden' class toe als andere tab actief is
+    // Specifieke logica voor "third" tab
+    const checkoutDiv = document.getElementById("menu-table-checkout");
+    if (checkoutDiv) {
+        if (tabName === "third") {
+            checkoutDiv.classList.remove("hidden");
+        } else {
+            checkoutDiv.classList.add("hidden");
+        }
     }
 }
+
 function ifClicked(element) {
     const buttons = document.querySelectorAll('.payment-click');
 

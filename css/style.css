@@ -8,7 +8,7 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 
 /* Algemene stijl voor de scrollbalk */
@@ -365,7 +365,7 @@ nav {
 }
 
 .menu-nav {
-    border-radius: 30px 0px 0px 30px !important;
+    border-radius: 30px 0 0 30px !important;
     background: rgb(17, 19, 21);
 }
 
@@ -376,7 +376,6 @@ nav {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    z-index: -1;
 }
 
 .menu-table {
@@ -396,7 +395,7 @@ nav {
 .menu-table-checkout {
     min-height: 843px;
     background: rgb(17, 19, 21);
-    border-radius: 0px 0px 30px 0px;
+    border-radius: 0 0 30px 0;
 }
 
 .menu-checkout {
@@ -404,7 +403,7 @@ nav {
     height: 730px;
     border-radius: 15px;
     width: 400px;
-    margin: 10px 0px 0px 0px;
+    margin: 10px 0 0 0;
 }
 
 .item-check {
@@ -430,7 +429,7 @@ nav {
     flex-direction: row;
     justify-content: center;
     gap: 45px;
-    margin: 10px 0px 0px 0px;
+    margin: 10px 0 0 0;
 }
 
 .payement-button {
@@ -446,7 +445,7 @@ nav {
 .payement-text h2 {
     font-size: 15px;
     color: rgb(107, 111, 112);
-    margin: 0%;
+    margin: 0;
 }
 
 .payement-text {
@@ -462,7 +461,7 @@ nav {
 }
 
 h2 {
-    margin: 0%;
+    margin: 0;
     color: rgb(63, 66, 67);
 }
 
@@ -541,8 +540,32 @@ input[type="text"] {
     border-radius: 10px;
     width: 20%;
     height: 200px;
-    margin: 20px 20px 0px 0px;
+    margin: 20px 20px 0 0;
     background-color: rgb(85, 131, 89);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.breakfast-main:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border: 1px black solid;
+}
+.soups-main:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border: 1px black solid;
+}
+.pasta-main:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border: 1px black solid;
+}
+.sushi-main:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border: 1px black solid;
 }
 
 .soups-main {
@@ -551,7 +574,7 @@ input[type="text"] {
     border-radius: 10px;
     width: 20%;
     height: 200px;
-    margin: 20px 20px 0px 0px;
+    margin: 20px 20px 0 0;
     background-color: rgb(115, 228, 126);
 }
 
@@ -561,7 +584,7 @@ input[type="text"] {
     border-radius: 10px;
     width: 20%;
     height: 200px;
-    margin: 20px 20px 0px 0px;
+    margin: 20px 20px 0 0;
     background-color: rgb(125, 179, 130);
 }
 
@@ -571,16 +594,16 @@ input[type="text"] {
     border-radius: 10px;
     width: 20%;
     height: 200px;
-    margin: 20px 20px 0px 0px;
+    margin: 20px 20px 0 0;
     background-color: rgb(189, 252, 201)
 }
 
 .items-catogorie-align {
-    margin: 10% 0% 0% 10%;
+    margin: 10% 0 0 10%;
 }
 
 .items-catogorie-align-boxI {
-    margin: 10% 0% 0% 10%;
+    margin: 10% 0 0 10%;
 }
 
 .items-catogorie-align-boxI img {
@@ -638,7 +661,7 @@ hr {
     background-color: rgb(45, 45, 45, 100); /* Witte achtergrond voor een nette uitstraling */
     border-radius: 10px; /* Ronde hoeken net zoals categorieën */
     padding: 20px; /* Binnenruimte binnen elk blok */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Voeg schaduw toe zoals bij categorieën */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Voeg schaduw toe zoals bij categorieën */
     display: flex;
     flex-direction: column; /* Verticaal uitlijnen */
     justify-content: space-between; /* Ruimte tussen inhoud en knoppen */
@@ -905,7 +928,7 @@ th {
 
 .lower-info-hr {
     width: 80%;
-    margin: 90px 0px;
+    margin: 90px 0;
     border: none; /* Verwijderd onnodige standaardranden */
     border-top: 1px solid #ccc; /* Voegt een horizontale lijn toe */
     height: 0; /* Hoogte op 0 om verticaal gedrag te vermijden */
